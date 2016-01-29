@@ -1,0 +1,49 @@
+#! /bin/bash -ex
+
+PHP_SRC_DIR='/www/src'
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+##
+## Memcached
+##
+#sudo apt-get install -y libz-dev libmemcached-dev
+#git clone https://github.com/php-memcached-dev/php-memcached.git -b php7 $PHP_SRC_DIR'/php-memcached'
+#cd $PHP_SRC_DIR'/php-memcached'
+#phpize
+#./configure --disable-memcached-session --disable-memcached-sasl
+#make -j $(grep -c "^processor" /proc/cpuinfo)
+#strip --strip-all modules/*.so
+#sudo make install
+#
+##
+## Msgpack
+##
+#wget -q "http://pecl.php.net/get/msgpack-2.0.0.tgz" -O $PHP_SRC_DIR'/php-msgpack.tgz'
+#mkdir $PHP_SRC_DIR'/php-msgpack'
+#tar -xvf $PHP_SRC_DIR'/php-msgpack.tgz' -C $PHP_SRC_DIR'/php-msgpack' --strip-components=1
+#cd $PHP_SRC_DIR'/php-msgpack'
+#phpize
+#./configure
+#make -j $(grep -c "^processor" /proc/cpuinfo)
+##strip --strip-all modules/*.so
+#sudo make install
+#
+##
+## Redis
+##
+#
+##
+## MongoDB
+##
+
+sudo apt-get install -y libsasl2-dev libssl-dev
+wget -q "http://xdebug.org/files/xdebug-2.4.0rc4.tgz" -O $PHP_SRC_DIR'/php-xdebug.tgz'
+mkdir $PHP_SRC_DIR'/php-xdebug'
+tar -xvf $PHP_SRC_DIR'/php-xdebug.tgz' -C $PHP_SRC_DIR'/php-xdebug' --strip-components=1
+cd $PHP_SRC_DIR'/php-xdebug'
+phpize
+./configure
+make -j $(grep -c "^processor" /proc/cpuinfo)
+strip --strip-all modules/*.so
+sudo make install

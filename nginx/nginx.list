@@ -1,0 +1,2 @@
+deb http://nginx.org/packages/mainline/ubuntu/ wily nginx
+deb-src http://nginx.org/packages/mainline/ubuntu/ wily nginx

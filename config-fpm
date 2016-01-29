@@ -1,0 +1,20 @@
+#! /bin/sh
+#
+# Created by configure
+
+'./configure' \
+'--prefix=/usr' \
+'--mandir=/usr/share/man' \
+'--sysconfdir=/etc/php/fpm' \
+'--with-config-file-path=/etc/php/fpm' \
+'--with-config-file-scan-dir=/etc/php/fpm/conf.d' \
+'--disable-short-tags' \
+'--disable-all' \
+'--disable-cgi' \
+'--disable-cli' \
+'--enable-fpm' \
+'--with-fpm-user=www-data' \
+'--with-fpm-group=www-data' \
+'--without-pear' \
+'--disable-phpdbg' \
+"$@"
