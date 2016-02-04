@@ -42,6 +42,7 @@
 '--enable-pdo=shared' \
 '--enable-mysqlnd=shared' \
 '--enable-ctype=shared' \
+'--enable-zip=shared' \
 '--with-iconv=shared' \
 '--with-xmlrpc=shared' \
 '--with-curl=shared' \
