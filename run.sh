@@ -1,6 +1,6 @@
 #! /bin/bash -ex
 
-PHP_SRC_DIR='/www/src/php-7.0.2'
+PHP_SRC_DIR='/www/src/php-7.0.3'
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
