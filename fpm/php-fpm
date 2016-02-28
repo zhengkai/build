@@ -1,14 +1,14 @@
 #!/bin/sh
 
-# /etc/init.d/php5-fpm
+# /etc/init.d/php-fpm
 
 ### BEGIN INIT INFO
-# Provides:          php-fpm php5-fpm
+# Provides:          php-fpm
 # Required-Start:    $remote_fs $network
 # Required-Stop:     $remote_fs $network
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: starts php5-fpm
+# Short-Description: starts php-fpm
 # Description:       Starts The PHP FastCGI Process Manager Daemon
 ### END INIT INFO
 
@@ -16,11 +16,10 @@
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="PHP5 FastCGI Process Manager"
-NAME=php5-fpm
+NAME=php-fpm
 DAEMON=/usr/sbin/$NAME
-DAEMON_ARGS="--daemonize --fpm-config /etc/php5/fpm/php-fpm.conf"
-CONF_PIDFILE=$(sed -n 's/^pid[ =]*//p' /etc/php5/fpm/php-fpm.conf)
-PIDFILE=${CONF_PIDFILE:-/run/php5-fpm.pid}
+DAEMON_ARGS="--daemonize --fpm-config /etc/php/fpm/php-fpm.conf"
+PIDFILE=/var/run/php-fpm.pid
 TIMEOUT=30
 SCRIPTNAME=/etc/init.d/$NAME
 
@@ -47,7 +46,7 @@ fi
 #
 do_check()
 {
-    /usr/lib/php5/php5-fpm-checkconf || return 1
+    /usr/lib/php/php-fpm-checkconf || return 1
     return 0
 }
 

@@ -47,7 +47,9 @@ sudo apt-mark hold php5-fpm
 
 cd $PHP_SRC_DIR
 
-make clean
+if [ -e 'Zend/zend_sprintf.lo' ]; then
+	make clean
+fi
 ./config-fpm
 make -j $(grep -c "^processor" /proc/cpuinfo)
 strip --strip-all sapi/fpm/php-fpm
@@ -61,4 +63,9 @@ strip --strip-all modules/*.a
 strip --strip-all modules/*.so
 sudo make install
 
-sudo pear install doc.php.net/pman
+if [ ! -e '/usr/lib/php/doc/pman' ]; then
+	sudo pear channel-update doc.php.net
+	sudo pear install doc.php.net/pman
+fi
+
+./fpm/install.sh

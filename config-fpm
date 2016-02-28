@@ -15,6 +15,8 @@
 '--enable-fpm' \
 '--with-fpm-user=www-data' \
 '--with-fpm-group=www-data' \
+'--with-fpm-systemd' \
+'--with-fpm-acl' \
 '--without-pear' \
 '--disable-phpdbg' \
 "$@"
