@@ -34,7 +34,7 @@
 '--enable-pcntl=shared' \
 '--enable-phar=shared' \
 '--enable-shmop=shared' \
-'--enable-libxml=shared' \
+'--enable-libxml' \
 '--enable-simplexml=shared' \
 '--enable-xmlwriter=shared' \
 '--enable-sysvsem=shared' \

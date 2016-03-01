@@ -68,4 +68,6 @@ if [ ! -e '/usr/lib/php/doc/pman' ]; then
 	sudo pear install doc.php.net/pman
 fi
 
-./fpm/install.sh
+if [ ! -e '/etc/systemd/system/php-fpm.service' ];then
+	./fpm/install.sh
+fi

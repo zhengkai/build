@@ -13,6 +13,7 @@
 '--disable-cgi' \
 '--disable-cli' \
 '--enable-fpm' \
+'--enable-libxml' \
 '--with-fpm-user=www-data' \
 '--with-fpm-group=www-data' \
 '--with-fpm-systemd' \
