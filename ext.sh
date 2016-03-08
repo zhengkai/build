@@ -5,6 +5,22 @@ PHP_SRC_DIR='/www/src'
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #
+# Yaml
+#
+
+wget -q "http://pecl.php.net/get/yaml-2.0.0RC7.tgz" -O $PHP_SRC_DIR'/php-yaml.tgz'
+mkdir $PHP_SRC_DIR'/php-yaml'
+sudo apt-get install -y libyaml-dev
+tar -xvf $PHP_SRC_DIR'/php-yaml.tgz' -C $PHP_SRC_DIR'/php-yaml' --strip-components=1
+rm $PHP_SRC_DIR'/php-yaml.tgz'
+cd $PHP_SRC_DIR'/php-yaml'
+phpize
+./configure
+make -j $(grep -c "^processor" /proc/cpuinfo)
+strip --strip-all modules/*.so
+sudo make install
+
+#
 # Msgpack
 #
 wget -q "http://pecl.php.net/get/msgpack-2.0.0.tgz" -O $PHP_SRC_DIR'/php-msgpack.tgz'
