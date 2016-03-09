@@ -14,3 +14,5 @@ if [ -e '/etc/nginx/fastcgi_params' ]; then
 		echo -e "\n"'fastcgi_param  SCRIPT_FILENAME    $request_filename;' | sudo tee -a /etc/nginx/fastcgi_params
 	fi
 fi
+
+sudo mkdir -p /etc/nginx/ssl
