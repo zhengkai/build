@@ -1,8 +1,10 @@
 #! /bin/bash -ex
 
-PHP_SRC_DIR='/www/src/php-7.0.3'
+PHP_SRC_DIR='/www/src/php-7.0.4'
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# http://jp2.php.net/get/php-7.0.4.tar.gz/from/this/mirror
 
 sudo apt-get install -y --no-install-recommends  \
 	autoconf \
@@ -25,7 +27,8 @@ sudo apt-get install -y --no-install-recommends  \
 	libmhash-dev \
 	libbz2-dev \
 	libtidy-dev \
-	libmcrypt-dev
+	libmcrypt-dev \
+	libsystemd-dev
 
 if [ ! -e /usr/include/gmp.h ]; then
 	sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
@@ -69,5 +72,5 @@ if [ ! -e '/usr/lib/php/doc/pman' ]; then
 fi
 
 if [ ! -e '/etc/systemd/system/php-fpm.service' ];then
-	./fpm/install.sh
+	$SCRIPT_DIR'/fpm/install.sh'
 fi
