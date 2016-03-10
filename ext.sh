@@ -23,7 +23,7 @@ sudo make install
 #
 # Msgpack
 #
-wget -q "http://pecl.php.net/get/msgpack-2.0.0.tgz" -O $PHP_SRC_DIR'/php-msgpack.tgz'
+wget -q "http://pecl.php.net/get/msgpack-2.0.1.tgz" -O $PHP_SRC_DIR'/php-msgpack.tgz'
 mkdir $PHP_SRC_DIR'/php-msgpack'
 tar -xvf $PHP_SRC_DIR'/php-msgpack.tgz' -C $PHP_SRC_DIR'/php-msgpack' --strip-components=1
 rm $PHP_SRC_DIR'/php-msgpack.tgz'
@@ -38,7 +38,7 @@ sudo make install
 # MongoDB
 #
 
-wget -q "http://pecl.php.net/get/mongodb-1.1.2.tgz" -O $PHP_SRC_DIR'/php-mongodb.tgz'
+wget -q "http://pecl.php.net/get/mongodb-1.1.3.tgz" -O $PHP_SRC_DIR'/php-mongodb.tgz'
 mkdir $PHP_SRC_DIR'/php-mongodb'
 tar -xvf $PHP_SRC_DIR'/php-mongodb.tgz' -C $PHP_SRC_DIR'/php-mongodb' --strip-components=1
 rm $PHP_SRC_DIR'/php-mongodb.tgz'
@@ -76,9 +76,10 @@ sudo make install
 # Xdebug
 #
 sudo apt-get install -y libsasl2-dev libssl-dev
-wget -q "http://xdebug.org/files/xdebug-2.4.0rc4.tgz" -O $PHP_SRC_DIR'/php-xdebug.tgz'
+wget -q "http://pecl.php.net/get/xdebug-2.4.0.tgz" -O $PHP_SRC_DIR'/php-xdebug.tgz'
 mkdir $PHP_SRC_DIR'/php-xdebug'
 tar -xvf $PHP_SRC_DIR'/php-xdebug.tgz' -C $PHP_SRC_DIR'/php-xdebug' --strip-components=1
+rm $PHP_SRC_DIR'/php-xdebug.tgz'
 cd $PHP_SRC_DIR'/php-xdebug'
 phpize
 ./configure
