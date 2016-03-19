@@ -1,5 +1,7 @@
 #! /bin/bash
 
+cd "$( dirname "${BASH_SOURCE[0]}" )"
+
 sudo apt-mark hold nginx-common
 sudo apt-mark hold nginx-core
 
@@ -16,3 +18,6 @@ if [ -e '/etc/nginx/fastcgi_params' ]; then
 fi
 
 sudo mkdir -p /etc/nginx/ssl
+sudo mkdir -p /etc/nginx/vhost.d/
+
+sudo cp nginx.conf /etc/nginx/
