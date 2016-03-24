@@ -13,10 +13,11 @@
 '--disable-cgi' \
 '--disable-fpm' \
 '--enable-cli' \
+'--enable-libxml' \
+'--enable-filter' \
 '--enable-session=shared' \
 '--enable-posix=shared' \
 '--enable-json=shared' \
-'--enable-filter=shared' \
 '--enable-calendar=shared' \
 '--enable-bcmath=shared' \
 '--enable-sockets=shared' \
@@ -34,7 +35,6 @@
 '--enable-pcntl=shared' \
 '--enable-phar=shared' \
 '--enable-shmop=shared' \
-'--enable-libxml' \
 '--enable-simplexml=shared' \
 '--enable-xmlwriter=shared' \
 '--enable-sysvsem=shared' \
