@@ -1,10 +1,33 @@
 #! /bin/bash -ex
 
-PHP_SRC_DIR='/www/src/php-7.0.4'
+PHP_VER='7.0.5'
+
+SHA1SUM='f9d93419031b4df663fc48f03b8a833545de8776225e46637563e2be6029908d'
+MD5SUM='c8379f3875caf95ce14266ca8212eb4e'
+
+SRC_DIR='/www/src'
+PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# http://jp2.php.net/get/php-7.0.4.tar.gz/from/this/mirror
+if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
+	echo 'no dir '$PHP_SRC_DIR
+	exit 1
+fi
+
+cd $SRC_DIR
+
+PHP_SRC_FILE=$SRC_DIR'/php-'$PHP_VER'.tar.gz'
+if [ ! -e $PHP_SRC_FILE ]; then
+	wget 'http://jp2.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
+fi
+
+echo "$SHA1SUM  $PHP_SRC_FILE" | sha256sum -c
+echo  "$MD5SUM  $PHP_SRC_FILE" | md5sum -c
+
+mkdir -p $PHP_SRC_DIR
+
+tar -xvf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
 
 sudo apt-get install -y --no-install-recommends  \
 	autoconf \
