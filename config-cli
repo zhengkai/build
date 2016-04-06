@@ -61,6 +61,7 @@
 '--with-bz2=shared' \
 '--with-recode=shared' \
 '--with-pear' \
+'--with-mysql-sock=/var/run/mysqld/mysqld.sock' \
 '--disable-phpdbg' \
 '--disable-mysqlnd-compression-support' \
 "$@"
