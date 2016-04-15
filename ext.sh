@@ -5,6 +5,22 @@ PHP_SRC_DIR='/www/src'
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #
+# event
+#
+
+wget -q "http://pecl.php.net/get/event-2.0.2.tgz" -O $PHP_SRC_DIR'/php-event.tgz'
+mkdir $PHP_SRC_DIR'/php-event'
+sudo apt-get install -y libevent-dev
+tar -xvf $PHP_SRC_DIR'/php-event.tgz' -C $PHP_SRC_DIR'/php-event' --strip-components=1
+rm $PHP_SRC_DIR'/php-event.tgz'
+cd $PHP_SRC_DIR'/php-event'
+phpize
+./configure
+make -j $(grep -c "^processor" /proc/cpuinfo)
+strip --strip-all modules/*.so
+sudo make install
+
+#
 # Yaml
 #
 
