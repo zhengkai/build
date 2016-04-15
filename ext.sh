@@ -5,6 +5,23 @@ PHP_SRC_DIR='/www/src'
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #
+# swoole
+#
+
+wget -q "http://pecl.php.net/get/swoole-1.8.4.tgz" -O $PHP_SRC_DIR'/php-swoole.tgz'
+mkdir $PHP_SRC_DIR'/php-swoole'
+#sudo apt-get install -y libevent-dev
+tar -xvf $PHP_SRC_DIR'/php-swoole.tgz' -C $PHP_SRC_DIR'/php-swoole' --strip-components=1
+rm $PHP_SRC_DIR'/php-swoole.tgz'
+cd $PHP_SRC_DIR'/php-swoole'
+phpize
+./configure
+make -j $(grep -c "^processor" /proc/cpuinfo)
+strip --strip-all modules/*.so
+sudo make install
+exit
+
+#
 # event
 #
 
