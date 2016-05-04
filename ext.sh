@@ -19,13 +19,12 @@ phpize
 make -j $(grep -c "^processor" /proc/cpuinfo)
 strip --strip-all modules/*.so
 sudo make install
-exit
 
 #
 # event
 #
 
-wget -q "http://pecl.php.net/get/event-2.0.2.tgz" -O $PHP_SRC_DIR'/php-event.tgz'
+wget -q "http://pecl.php.net/get/event-2.0.4.tgz" -O $PHP_SRC_DIR'/php-event.tgz'
 mkdir $PHP_SRC_DIR'/php-event'
 sudo apt-get install -y libevent-dev
 tar -xvf $PHP_SRC_DIR'/php-event.tgz' -C $PHP_SRC_DIR'/php-event' --strip-components=1
@@ -71,7 +70,7 @@ sudo make install
 # MongoDB
 #
 
-wget -q "http://pecl.php.net/get/mongodb-1.1.3.tgz" -O $PHP_SRC_DIR'/php-mongodb.tgz'
+wget -q "http://pecl.php.net/get/mongodb-1.1.6.tgz" -O $PHP_SRC_DIR'/php-mongodb.tgz'
 mkdir $PHP_SRC_DIR'/php-mongodb'
 tar -xvf $PHP_SRC_DIR'/php-mongodb.tgz' -C $PHP_SRC_DIR'/php-mongodb' --strip-components=1
 rm $PHP_SRC_DIR'/php-mongodb.tgz'
