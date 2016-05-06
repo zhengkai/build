@@ -14,7 +14,7 @@ if [ -e '/etc/nginx/fastcgi_params' ]; then
 	fi
 fi
 
-sudo mkdir -p /etc/nginx/ssl
-sudo mkdir -p /etc/nginx/vhost.d/
+sudo mkdir -p /etc/nginx/ssl.d
+sudo mkdir -p /etc/nginx/vhost.d
 
 sudo cp nginx.conf /etc/nginx/
