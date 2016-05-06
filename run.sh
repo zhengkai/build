@@ -68,9 +68,6 @@ cd $PHP_SRC_DIR
 cp $SCRIPT_DIR'/config-fpm' $PHP_SRC_DIR
 cp $SCRIPT_DIR'/config-cli' $PHP_SRC_DIR
 
-sudo apt-mark hold php5-cli
-sudo apt-mark hold php5-fpm
-
 cd $PHP_SRC_DIR
 
 if [ -e 'Zend/zend_sprintf.lo' ]; then
