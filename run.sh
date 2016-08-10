@@ -1,9 +1,9 @@
 #! /bin/bash -ex
 
-PHP_VER='7.0.6'
+PHP_VER='7.0.9'
 
-SHA256SUM='f6b47cb3e02530d96787ae5c7888aefbd1db6ae4164d68b88808ee6f4da94277'
-MD5SUM='c9e2ff2d6f843a584179ce96e63e38f9'
+SHA256SUM='93895a6a610c94751c890e5ee91a7f4bc0eae476b95fe30425d13f7ae88753d5'
+MD5SUM='32ea3ce54d7d5ed03c6c600dffd65813'
 
 SRC_DIR='/www/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
@@ -27,7 +27,7 @@ echo    "$MD5SUM  $PHP_SRC_FILE" | md5sum -c
 
 mkdir -p $PHP_SRC_DIR
 
-tar -xvf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
+tar -xf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
 
 sudo apt-get install -y --no-install-recommends  \
 	autoconf \

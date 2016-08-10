@@ -1,0 +1,10 @@
+sudo: required
+language: c
+before_script:
+  - sudo mkdir -p /www/src
+  - sudo chown travis:travis /www/src
+
+script:
+  - ./run.sh
+
+dist: trusty
