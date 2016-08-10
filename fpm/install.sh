@@ -2,6 +2,8 @@
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
+sudo apt-get install libsystemd-dev
+
 sudo mkdir -p /var/log/php
 
 sudo cp php-fpm.service /etc/systemd/system/php-fpm.service

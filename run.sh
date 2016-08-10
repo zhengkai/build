@@ -50,8 +50,7 @@ sudo apt-get install -y --no-install-recommends  \
 	libmhash-dev \
 	libbz2-dev \
 	libtidy-dev \
-	libmcrypt-dev \
-	libsystemd-dev
+	libmcrypt-dev
 
 if [ ! -e /usr/include/gmp.h ]; then
 	sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
