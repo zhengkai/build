@@ -96,8 +96,10 @@ sudo make install
 #
 # Redis
 #
-git clone https://github.com/phpredis/phpredis.git -b php7 $PHP_SRC_DIR'/php-redis'
+wget -q "http://pecl.php.net/get/redis-3.0.0.tgz" -O $PHP_SRC_DIR'/php-redis.tgz'
+mkdir $PHP_SRC_DIR'/php-redis'
 cd $PHP_SRC_DIR'/php-redis'
+tar -xvf $PHP_SRC_DIR'/php-redis.tgz' -C $PHP_SRC_DIR'/php-redis' --strip-components=1
 phpize
 ./configure --disable-redis-session
 make -j $(grep -c "^processor" /proc/cpuinfo)
