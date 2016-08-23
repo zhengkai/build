@@ -40,17 +40,18 @@ sudo apt-get install -y --no-install-recommends  \
 	bison \
 	re2c \
 	bzip2 \
-	libcurl4-openssl-dev \
-	libreadline6-dev \
-	libssl-dev \
 	libacl1-dev \
-	librecode-dev \
-	libxml2-dev \
-	libgmp-dev \
-	libmhash-dev \
 	libbz2-dev \
+	libcurl4-openssl-dev \
+	libgmp-dev \
+	libmcrypt-dev \
+	libmhash-dev \
+	libreadline6-dev \
+	librecode-dev \
+	libssl-dev \
+	libsystemd-dev \
 	libtidy-dev \
-	libmcrypt-dev
+	libxml2-dev
 
 if [ ! -e /usr/include/gmp.h ]; then
 	sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
