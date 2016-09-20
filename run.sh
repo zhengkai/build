@@ -17,6 +17,11 @@ fi
 
 cd $SRC_DIR
 
+if [ "$('pwd')" != $SRC_DIR ]; then
+	echo 'fail to cd '$PHP_SRC_DIR
+	exit 1
+fi
+
 PHP_SRC_FILE=$SRC_DIR'/php-'$PHP_VER'.tar.gz'
 if [ ! -e $PHP_SRC_FILE ]; then
 	wget 'http://jp2.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
