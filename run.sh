@@ -34,7 +34,7 @@ mkdir -p $PHP_SRC_DIR
 
 tar -xf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
 
-sudo apt-get install -y --no-install-recommends  \
+sudo apt-get install -y --no-install-recommends \
 	autoconf \
 	file \
 	g++ \
