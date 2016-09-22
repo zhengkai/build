@@ -36,7 +36,7 @@ if [ "$('pwd')" != $GIT_SRC_DIR ]; then
 	exit 1
 fi
 git reset --hard
-git co master
+git checkout master
 git pull
 
 ver=`git ls-remote --tags | grep -o 'refs/tags/v.*' | grep -v '\^' | grep -v '\[a-z\]+' | cut -d '/' -f 3 | cut -d 'v' -f 2 | grep -v '[a-zA-Z]' | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr -k5,5nr | head -n 1`
