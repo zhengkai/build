@@ -1,11 +1,11 @@
 #! /bin/bash -ex
 
-SRC_DIR='/www/src'
+SRC_DIR='/usr/local/src'
 GIT_SRC_DIR=$SRC_DIR'/git'
 
 sudo apt-get install -y --no-install-recommends \
 	gettext \
-	libcurl4-gnutls-dev \
+	libcurl4-openssl-dev \
 	libexpat1-dev \
 	libssl-dev \
 	libz-dev
@@ -45,10 +45,17 @@ if [ -z "$ver" ]; then
 	exit 1
 fi
 
+if ! [ -e /usr/local/share/info/dir ]; then
+	sudo ln -s /usr/share/info/dir /usr/local/share/info/
+fi
+
 git checkout 'v'$ver
 
 make clean
 make configure
-./configure --prefix=/usr
+./configure --prefix=/usr/local
 make all doc info
-sudo make install install-doc install-html install-info
+sudo make install
+sudo make install-doc
+sudo make install-html
+sudo make install-info
