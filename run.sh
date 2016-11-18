@@ -1,11 +1,11 @@
 #! /bin/bash -ex
 
-PHP_VER='7.0.12'
+PHP_VER='7.0.13'
 
-MD5SUM='5dd00a65a1d76a4792f6989d4576623d'
-SHA256SUM='c4693cc363b4bbc7224294cc94faf3598e616cbe8540dd6975f68c7d3c52682f'
+MD5SUM='79ee358b661a4b70ee3ce1f6ab02df96'
+SHA256SUM='c8d8cf1b29e7f7e89be9ee64f453cb7ef6d20e1d13a83cba037bd654ef2da42c'
 
-SRC_DIR='/www/src'
+SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
