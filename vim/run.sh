@@ -2,17 +2,12 @@
 
 SRC_DIR='/usr/local/src'
 
-GIT_SRC_DIR=$SRC_DIR'/git'
-
-git clone git@github.com:vim/vim.git
-if [ ! -e $GIT_SRC_DIR ]; then
-	git clone git@github.com:git/git.git $GIT_SRC_DIR
-fi
+VIM_SRC_DIR=$SRC_DIR'/vim'
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
-	echo 'no dir '$GIT_SRC_DIR
+	echo 'no dir '$VIM_SRC_DIR
 	exit 1
 fi
 
@@ -22,12 +17,12 @@ if [ "$('pwd')" != $SRC_DIR ]; then
 	exit 1
 fi
 
-if [ ! -e $GIT_SRC_DIR ]; then
-	git clone git@github.com:git/git.git $GIT_SRC_DIR
+if [ ! -e $VIM_SRC_DIR ]; then
+	git clone git@github.com:vim/vim.git $VIM_SRC_DIR
 fi
-cd $GIT_SRC_DIR
-if [ "$('pwd')" != $GIT_SRC_DIR ]; then
-	echo 'fail to cd '$GIT_SRC_DIR
+cd $VIM_SRC_DIR
+if [ "$('pwd')" != $VIM_SRC_DIR ]; then
+	echo 'fail to cd '$VIM_SRC_DIR
 	exit 1
 fi
 
@@ -35,7 +30,7 @@ git pull
 
 cd src
 
-make clean
+make clean 2>&1 || echo 'no need clean'
 
 make
 
