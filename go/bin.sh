@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -x
 
 cd $(dirname `readlink -f $0`)
 GOBIN_VER=`./get_ver.sh`
