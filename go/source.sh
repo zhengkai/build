@@ -1,7 +1,14 @@
 #!/bin/bash -ex
 
-GOBIN_VER='1.7.3'
 SRC_PATH='/usr/local/src'
+
+cd $(dirname `readlink -f $0`)
+GOBIN_VER=`./get_ver.sh`
+
+if [ -z "$GOBIN_VER" ]; then
+	>&2 echo 'can not detect go version'
+	exit 1
+fi
 
 cd $SRC_PATH
 if ! [ $(pwd) == $SRC_PATH ]; then
