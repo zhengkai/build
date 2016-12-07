@@ -30,7 +30,7 @@ git pull
 
 cd src
 
-make clean 2>&1 || echo 'no need clean'
+make clean 2>&1 || echo
 
 make
 
