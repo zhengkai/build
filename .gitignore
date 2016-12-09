@@ -1,2 +1,6 @@
 /go/ver.txt
 /go/update_bin.lock
+/git/ver.txt
+/git/update.lock
+/vim/ver.txt
+/vim/update.lock
