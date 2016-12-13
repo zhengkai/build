@@ -1,9 +1,9 @@
 #! /bin/bash -ex
 
-PHP_VER='7.0.13'
+PHP_VER='7.1.0'
 
-MD5SUM='79ee358b661a4b70ee3ce1f6ab02df96'
-SHA256SUM='c8d8cf1b29e7f7e89be9ee64f453cb7ef6d20e1d13a83cba037bd654ef2da42c'
+MD5SUM='ec2218f97b4edbc35a2d7919ff37a662'
+SHA256SUM='9e84c5b13005c56374730edf534fe216f6a2e63792a9703d4b894e770bbccbae'
 
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
@@ -56,7 +56,8 @@ sudo apt-get install -y --no-install-recommends \
 	libssl-dev \
 	libsystemd-dev \
 	libtidy-dev \
-	libxml2-dev
+	libxml2-dev \
+	libmysqlclient-dev
 
 if [ ! -e /usr/include/gmp.h ]; then
 	sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h

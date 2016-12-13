@@ -49,7 +49,7 @@
 '--with-tidy=shared' \
 '--with-mcrypt=shared' \
 '--with-mhash=shared' \
-'--with-mysqli=shared' \
+'--with-mysqli=shared,/usr/bin/mysql_config' \
 '--with-gmp=shared' \
 '--with-readline=shared' \
 '--with-gettext=shared' \

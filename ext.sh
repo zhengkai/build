@@ -5,25 +5,10 @@ PHP_SRC_DIR='/usr/local/src'
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #
-# swoole
-#
-
-wget -q "https://pecl.php.net/get/swoole-1.8.8.tgz" -O $PHP_SRC_DIR'/php-swoole.tgz'
-mkdir $PHP_SRC_DIR'/php-swoole'
-tar -xvf $PHP_SRC_DIR'/php-swoole.tgz' -C $PHP_SRC_DIR'/php-swoole' --strip-components=1
-rm $PHP_SRC_DIR'/php-swoole.tgz'
-cd $PHP_SRC_DIR'/php-swoole'
-phpize
-./configure
-make -j $(grep -c "^processor" /proc/cpuinfo)
-strip --strip-all modules/*.so
-sudo make install
-
-#
 # event
 #
 
-wget -q "https://pecl.php.net/get/event-2.1.0.tgz" -O $PHP_SRC_DIR'/php-event.tgz'
+wget -q "https://pecl.php.net/get/event-2.2.1.tgz" -O $PHP_SRC_DIR'/php-event.tgz'
 mkdir $PHP_SRC_DIR'/php-event'
 sudo apt-get install -y libevent-dev
 tar -xvf $PHP_SRC_DIR'/php-event.tgz' -C $PHP_SRC_DIR'/php-event' --strip-components=1
@@ -39,7 +24,7 @@ sudo make install
 # Yaml
 #
 
-wget -q "https://pecl.php.net/get/yaml-2.0.0RC8.tgz" -O $PHP_SRC_DIR'/php-yaml.tgz'
+wget -q "https://pecl.php.net/get/yaml-2.0.0.tgz" -O $PHP_SRC_DIR'/php-yaml.tgz'
 mkdir $PHP_SRC_DIR'/php-yaml'
 sudo apt-get install -y libyaml-dev
 tar -xvf $PHP_SRC_DIR'/php-yaml.tgz' -C $PHP_SRC_DIR'/php-yaml' --strip-components=1
@@ -54,7 +39,7 @@ sudo make install
 #
 # Msgpack
 #
-wget -q "https://pecl.php.net/get/msgpack-2.0.1.tgz" -O $PHP_SRC_DIR'/php-msgpack.tgz'
+wget -q "https://pecl.php.net/get/msgpack-2.0.2.tgz" -O $PHP_SRC_DIR'/php-msgpack.tgz'
 mkdir $PHP_SRC_DIR'/php-msgpack'
 tar -xvf $PHP_SRC_DIR'/php-msgpack.tgz' -C $PHP_SRC_DIR'/php-msgpack' --strip-components=1
 rm $PHP_SRC_DIR'/php-msgpack.tgz'
@@ -69,7 +54,7 @@ sudo make install
 # MongoDB
 #
 
-wget -q "https://pecl.php.net/get/mongodb-1.1.8.tgz" -O $PHP_SRC_DIR'/php-mongodb.tgz'
+wget -q "https://pecl.php.net/get/mongodb-1.2.1.tgz" -O $PHP_SRC_DIR'/php-mongodb.tgz'
 mkdir $PHP_SRC_DIR'/php-mongodb'
 tar -xvf $PHP_SRC_DIR'/php-mongodb.tgz' -C $PHP_SRC_DIR'/php-mongodb' --strip-components=1
 rm $PHP_SRC_DIR'/php-mongodb.tgz'
@@ -109,7 +94,7 @@ sudo make install
 # Xdebug
 #
 sudo apt-get install -y libsasl2-dev libssl-dev
-wget -q "https://pecl.php.net/get/xdebug-2.4.1.tgz" -O $PHP_SRC_DIR'/php-xdebug.tgz'
+wget -q "https://pecl.php.net/get/xdebug-2.5.0.tgz" -O $PHP_SRC_DIR'/php-xdebug.tgz'
 mkdir $PHP_SRC_DIR'/php-xdebug'
 tar -xvf $PHP_SRC_DIR'/php-xdebug.tgz' -C $PHP_SRC_DIR'/php-xdebug' --strip-components=1
 rm $PHP_SRC_DIR'/php-xdebug.tgz'
