@@ -19,6 +19,7 @@ LOCK_FILE=$SCRIPT_DIR'/update.lock'
 VER_FILE=$SCRIPT_DIR'/ver.txt'
 
 if [ ! -e /usr/local/share/info/dir ]; then
+	sudo mkdir -p /usr/local/share/info
 	sudo ln -s /usr/share/info/dir /usr/local/share/info/
 fi
 
