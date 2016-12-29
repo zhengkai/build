@@ -1,5 +1,7 @@
 <http://shadowsocks.org/en/config/advanced.html>
 
+<https://github.com/shadowsocks/shadowsocks/wiki/Securing-Public-Shadowsocks-Server>
+
 创建 shadowsocks 用户
 
     sudo adduser --system --disabled-password --disabled-login --no-create-home shadowsocks
