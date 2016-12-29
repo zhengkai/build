@@ -10,19 +10,19 @@ VER_FILE=$SCRIPT_DIR'/ver.txt'
 cd $(dirname `readlink -f $0`)
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
-	>&2 echo 'no dir '$SS_SRC_DIR
+	>&2 echo 'no dir '$SRC_DIR
 	exit 1
 fi
 
 if [ ! -e $SS_SRC_DIR ]; then
-	git clone https://github.com/shadowsocks/shadowsocks-libev.git $SS_SRC_DIR
+	git clone git@github.com:shadowsocks/shadowsocks-libev.git $SS_SRC_DIR
 fi
 cd $SS_SRC_DIR
 if [ "$('pwd')" != $SS_SRC_DIR ]; then
 	>&2 echo 'fail to cd '$SS_SRC_DIR
 	exit 1
 fi
-sudo apt-get install -f build-essential autoconf libtool libssl-dev
+sudo apt-get install -y build-essential autoconf libtool libssl-dev asciidoc
 
 (
 	flock -x -n 200 || exit 1
