@@ -3,17 +3,6 @@
 SRC_DIR='/usr/local/src'
 GIT_SRC_DIR=$SRC_DIR'/git'
 
-sudo apt-get install -y --no-install-recommends \
-	gettext \
-	libcurl4-openssl-dev \
-	libexpat1-dev \
-	libssl-dev \
-	libz-dev
-sudo apt-get install -y --no-install-recommends \
-	asciidoc \
-	docbook2x \
-	xmlto
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 LOCK_FILE=$SCRIPT_DIR'/update.lock'
 VER_FILE=$SCRIPT_DIR'/ver.txt'
@@ -65,6 +54,17 @@ fi
 		>&2 echo 'newest version '$VER', no need update'
 		exit 1
 	fi
+
+	sudo apt-get install -y --no-install-recommends \
+		gettext \
+		libcurl4-openssl-dev \
+		libexpat1-dev \
+		libssl-dev \
+		libz-dev
+	sudo apt-get install -y --no-install-recommends \
+		asciidoc \
+		docbook2x \
+		xmlto
 
 	git checkout 'v'$VER
 
