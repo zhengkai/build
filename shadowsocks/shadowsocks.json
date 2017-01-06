@@ -1,0 +1,11 @@
+{
+	"server":"",
+	"server_port":8388,
+	"password":"password",
+	"timeout":600,
+	"method":"aes-256-cfb",
+	"local_port":1080,
+	"local_address":"127.0.0.1",
+	"fast_open": true,
+	"mode": "tcp_and_udp"
+}

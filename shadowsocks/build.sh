@@ -22,7 +22,6 @@ if [ "$('pwd')" != $SS_SRC_DIR ]; then
 	>&2 echo 'fail to cd '$SS_SRC_DIR
 	exit 1
 fi
-sudo apt-get install -y build-essential autoconf libtool libssl-dev asciidoc
 
 (
 	flock -x -n 200 || exit 1
@@ -46,6 +45,8 @@ sudo apt-get install -y build-essential autoconf libtool libssl-dev asciidoc
 		>&2 echo 'newest version '$VER', no need update'
 		exit 1
 	fi
+
+	sudo apt-get install -y build-essential autoconf libtool libssl-dev asciidoc
 
 	git checkout 'v'$VER
 
