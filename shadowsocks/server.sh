@@ -10,4 +10,7 @@ if [ "$user" != "$check_user" ]; then
 	exit 1
 fi
 
-/usr/local/bin/ss-server --fast-open -c /etc/shadowsocks.json
+/usr/local/bin/ss-server \
+	--fast-open \
+	-c /etc/shadowsocks.json \
+	-f /var/run/ss-server.pid
