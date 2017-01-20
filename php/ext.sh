@@ -80,7 +80,7 @@ sudo make install
 #
 # Redis
 #
-wget -q "https://pecl.php.net/get/redis-3.0.0.tgz" -O $PHP_SRC_DIR'/php-redis.tgz'
+wget -q "https://pecl.php.net/get/redis-3.1.0.tgz" -O $PHP_SRC_DIR'/php-redis.tgz'
 mkdir $PHP_SRC_DIR'/php-redis'
 cd $PHP_SRC_DIR'/php-redis'
 tar -xvf $PHP_SRC_DIR'/php-redis.tgz' -C $PHP_SRC_DIR'/php-redis' --strip-components=1
