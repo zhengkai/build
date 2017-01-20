@@ -46,7 +46,7 @@ fi
 		exit 1
 	fi
 
-	sudo apt-get install -y build-essential autoconf libtool libssl-dev asciidoc
+	sudo apt-get install -y build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev
 
 	git checkout 'v'$VER
 

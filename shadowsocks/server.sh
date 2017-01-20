@@ -12,5 +12,6 @@ fi
 
 /usr/local/bin/ss-server \
 	--fast-open \
+	--mptcp \
 	-c /etc/shadowsocks.json \
 	-f /var/run/ss-server.pid
