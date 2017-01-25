@@ -8,7 +8,7 @@ SHA256SUM='c136279d539c3c2c25176bf149c14913670e79bb27ee6b73e1cd69003985a70d'
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR=$(dirname `readlink -f $0`)
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	echo 'no dir '$PHP_SRC_DIR
@@ -69,13 +69,10 @@ sudo mkdir -p /etc/php/fpm/conf.d
 sudo mkdir -p /etc/php/cli/conf.d
 sudo cp -R etc/* /etc/php/
 
-cd $PHP_SRC_DIR
-
-cp $SCRIPT_DIR'/config-fpm' $PHP_SRC_DIR
-cp $SCRIPT_DIR'/config-cli' $PHP_SRC_DIR
+cp config-fpm $PHP_SRC_DIR
+cp config-cli $PHP_SRC_DIR
 
 cd $PHP_SRC_DIR
-
 if [ -e 'Zend/zend_sprintf.lo' ]; then
 	make clean
 fi
@@ -95,6 +92,10 @@ sudo make install
 if [ ! -e '/usr/lib/php/doc/pman' ]; then
 	sudo pear channel-update doc.php.net
 	sudo pear install doc.php.net/pman
+fi
+BASHCOMP_DIR='/etc/bash_completion.d'
+if [ -d $BASHCOMP_DIR ] && [ ! -e "$BASHCOMP_DIR/pman" ]; then
+	sudo cp "$SCRIPT_DIR/pman" $BASHCOMP_DIR
 fi
 
 if [ ! -e '/etc/systemd/system/php-fpm.service' ];then
