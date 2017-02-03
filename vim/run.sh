@@ -61,4 +61,8 @@ fi
 
 	echo "$VER" > $VER_FILE
 
+	if [ ! -e /usr/local/bin/vi ]; then
+		sudo ln -s /usr/local/bin/vim /usr/local/bin/vi
+	fi
+
 ) 200>$LOCK_FILE
