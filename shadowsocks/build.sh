@@ -46,10 +46,14 @@ fi
 		exit 1
 	fi
 
-	sudo apt-get install -y build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev
+	sudo apt-get install --no-install-recommends gettext build-essential autoconf libtool \
+		libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev libudns-dev libsodium-dev
 
 	git checkout 'v'$VER
 
+	git submodule update --init --recursive
+
+	./autogen.sh
 	./configure
 	make
 	sudo make install
