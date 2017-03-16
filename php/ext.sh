@@ -97,3 +97,13 @@ tar -xvf $PHP_SRC_DIR'/php-xdebug.tgz' -C $PHP_SRC_DIR'/php-xdebug' --strip-comp
 rm $PHP_SRC_DIR'/php-xdebug.tgz'
 cd $PHP_SRC_DIR'/php-xdebug'
 common_run_make
+
+#
+# GeoIP
+#
+wget -q 'https://pecl.php.net/get/geoip-1.1.1.tgz' -O $PHP_SRC_DIR'/php-geoip.tgz'
+mkdir $PHP_SRC_DIR'/php-geoip'
+tar -xvf $PHP_SRC_DIR'/php-geoip.tgz' -C $PHP_SRC_DIR'/php-geoip' --strip-components=1
+rm $PHP_SRC_DIR'/php-geoip.tgz'
+cd $PHP_SRC_DIR'/php-geoip'
+common_run_make
