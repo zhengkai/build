@@ -56,7 +56,7 @@ common_run_make
 # MongoDB
 #
 
-wget -q 'https://pecl.php.net/get/mongodb-1.2.5.tgz' -O $PHP_SRC_DIR'/php-mongodb.tgz'
+wget -q 'https://pecl.php.net/get/mongodb-1.2.8.tgz' -O $PHP_SRC_DIR'/php-mongodb.tgz'
 mkdir $PHP_SRC_DIR'/php-mongodb'
 tar -xvf $PHP_SRC_DIR'/php-mongodb.tgz' -C $PHP_SRC_DIR'/php-mongodb' --strip-components=1
 rm $PHP_SRC_DIR'/php-mongodb.tgz'
