@@ -11,14 +11,14 @@ PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 SCRIPT_DIR=$(dirname `readlink -f $0`)
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
-	echo 'no dir '$PHP_SRC_DIR
+	>&2 echo 'no dir '$PHP_SRC_DIR
 	exit 1
 fi
 
 cd $SRC_DIR
 
 if [ "$('pwd')" != $SRC_DIR ]; then
-	echo 'fail to cd '$PHP_SRC_DIR
+	>&2 echo 'fail to cd '$PHP_SRC_DIR
 	exit 1
 fi
 
@@ -32,7 +32,7 @@ echo    "$MD5SUM  $PHP_SRC_FILE" | md5sum -c
 
 mkdir -p $PHP_SRC_DIR
 
-tar -xf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
+tar -xzf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
 
 sudo apt-get install -y --no-install-recommends \
 	autoconf \
