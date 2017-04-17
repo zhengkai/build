@@ -4,10 +4,9 @@ PHP_SRC_DIR='/usr/local/src'
 
 cd `dirname $0`
 SCRIPT_DIR="`pwd`"
-PROCESSOR_NUM="`grep -c '^processor' /proc/cpuinfo`"
 
 run_make() {
-	make -j $PROCESSOR_NUM
+	make -j "`grep -c '^processor' /proc/cpuinfo`"
 	strip --strip-all modules/*.so
 	sudo make install
 }
@@ -22,7 +21,7 @@ common_run_make() {
 # event
 #
 
-wget -q 'https://pecl.php.net/get/event-2.2.1.tgz' -O $PHP_SRC_DIR'/php-event.tgz'
+wget -q 'https://pecl.php.net/get/event-2.3.0.tgz' -O $PHP_SRC_DIR'/php-event.tgz'
 mkdir $PHP_SRC_DIR'/php-event'
 sudo apt-get install -y libevent-dev
 tar -xvf $PHP_SRC_DIR'/php-event.tgz' -C $PHP_SRC_DIR'/php-event' --strip-components=1
@@ -73,13 +72,16 @@ tar -xvf $PHP_SRC_DIR'/php-memcached.tgz' -C $PHP_SRC_DIR'/php-memcached' --stri
 rm $PHP_SRC_DIR'/php-memcached.tgz'
 cd $PHP_SRC_DIR'/php-memcached'
 phpize
-./configure --disable-memcached-session --disable-memcached-sasl
+./configure \
+	--disable-memcached-session \
+	--disable-memcached-sasl \
+	--enable-memcached-msgpack
 run_make
 
 #
 # Redis
 #
-wget -q 'https://pecl.php.net/get/redis-3.1.1.tgz' -O $PHP_SRC_DIR'/php-redis.tgz'
+wget -q 'https://pecl.php.net/get/redis-3.1.2.tgz' -O $PHP_SRC_DIR'/php-redis.tgz'
 mkdir $PHP_SRC_DIR'/php-redis'
 cd $PHP_SRC_DIR'/php-redis'
 tar -xvf $PHP_SRC_DIR'/php-redis.tgz' -C $PHP_SRC_DIR'/php-redis' --strip-components=1
