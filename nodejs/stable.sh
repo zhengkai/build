@@ -45,6 +45,10 @@ URL='https://nodejs.org/dist/v'$VER'/'$FILE
 		sudo cp -r $FILE_DIR'/'$i $INSTALL_DIR
 	done
 
+	if [ ! -e $INSTALL_DIR'bin/nodejs' ]; then
+		sudo ln -s $INSTALL_DIR'bin/node' $INSTALL_DIR'bin/nodejs'
+	fi
+
 	echo "$VER" > $VER_FILE
 
 ) 200>$LOCK_FILE
