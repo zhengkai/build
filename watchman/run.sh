@@ -7,8 +7,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 LOCK_FILE=$SCRIPT_DIR'/update.lock'
 VER_FILE=$SCRIPT_DIR'/ver.txt'
 
-sudo apt install automake
-
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	>&2 echo 'no dir '$GIT_SRC_DIR
 	exit 1
@@ -51,6 +49,8 @@ fi
 		>&2 echo 'newest version '$VER', no need update'
 		exit 1
 	fi
+
+	sudo apt install -y automake
 
 	git checkout 'v'$VER
 
