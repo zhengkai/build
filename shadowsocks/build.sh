@@ -46,8 +46,10 @@ fi
 		exit 1
 	fi
 
-	sudo apt-get install -y --no-install-recommends gettext build-essential autoconf libtool \
-		libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev libudns-dev libsodium-dev
+	sudo apt-get install -y --no-install-recommends \
+		automake build-essential autoconf gettext libtool \
+		libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev \
+		libudns-dev libsodium-dev
 
 	git checkout 'v'$VER
 
