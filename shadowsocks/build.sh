@@ -3,11 +3,10 @@
 SRC_DIR='/usr/local/src'
 SS_SRC_DIR=$SRC_DIR'/shadowsocks'
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $(dirname `readlink -f $0`)
+SCRIPT_DIR=`pwd`
 LOCK_FILE=$SCRIPT_DIR'/update.lock'
 VER_FILE=$SCRIPT_DIR'/ver.txt'
-
-cd $(dirname `readlink -f $0`)
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	>&2 echo 'no dir '$SRC_DIR
@@ -18,7 +17,7 @@ if [ ! -e $SS_SRC_DIR ]; then
 	git clone git@github.com:shadowsocks/shadowsocks-libev.git $SS_SRC_DIR
 fi
 cd $SS_SRC_DIR
-if [ "$('pwd')" != $SS_SRC_DIR ]; then
+if [ `pwd` != $SS_SRC_DIR ]; then
 	>&2 echo 'fail to cd '$SS_SRC_DIR
 	exit 1
 fi

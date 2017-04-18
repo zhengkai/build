@@ -8,7 +8,8 @@ SHA256SUM='ed0006c86de503684dde04c6dd811ea2354a3b6d10ebd9f0cb103dcd28f0e70f'
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
-SCRIPT_DIR=$(dirname `readlink -f $0`)
+cd $(dirname `readlink -f $0`)
+SCRIPT_DIR=`pwd`
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	>&2 echo 'no dir '$PHP_SRC_DIR
@@ -73,15 +74,13 @@ cp config-fpm $PHP_SRC_DIR
 cp config-cli $PHP_SRC_DIR
 
 cd $PHP_SRC_DIR
-if [ -e 'Zend/zend_sprintf.lo' ]; then
-	make clean
-fi
+make clean 2>&1 || echo
 ./config-fpm
 make -j $(grep -c "^processor" /proc/cpuinfo)
 strip --strip-all sapi/fpm/php-fpm
 sudo make install
 
-make clean
+make clean 2>&1 || echo
 ./config-cli
 make -j $(grep -c "^processor" /proc/cpuinfo)
 strip --strip-all sapi/cli/php
@@ -95,7 +94,7 @@ if [ ! -e '/usr/lib/php/doc/pman' ]; then
 fi
 BASHCOMP_DIR='/etc/bash_completion.d'
 if [ -d $BASHCOMP_DIR ] && [ ! -e "$BASHCOMP_DIR/pman" ]; then
-	sudo cp "$SCRIPT_DIR/pman" $BASHCOMP_DIR
+	sudo cp $SCRIPT_DIR'/pman' $BASHCOMP_DIR
 fi
 
 if [ ! -e '/etc/systemd/system/php-fpm.service' ];then

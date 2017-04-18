@@ -1,17 +1,14 @@
-#!/bin/bash -x
+#!/bin/bash -e
 
-check_user='shadowsocks'
+USER='shadowsocks'
+CONFIG_FILE='/etc/shadowsocks.json'
+PID_FILE='/var/run/ss-local.pid'
 
-ulimit -n 51200
-
-user=`id -u -n`
-if [ "$user" != "$check_user" ]; then
-	>&2 echo 'must be user '$check_user
-	exit 1
+if [ ! -e $PID_FILE ]; then
+	sudo touch $PID_FILE
+	sudo chown $USER $PID_FILE
 fi
 
-/usr/local/bin/ss-local \
-	--fast-open \
-	--mptcp \
-	-c /etc/shadowsocks.json \
-	-f /var/run/ss-local.pid
+cd $(dirname `readlink -f $0`)
+
+sudo -u $USER CONFIG_FILE="$CONFIG_FILE" PID_FILE="$PID_FILE" /bin/bash ./client_sub.bash
