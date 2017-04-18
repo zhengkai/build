@@ -2,7 +2,7 @@
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-sudo apt-get install libsystemd-dev
+sudo apt-get install -y libsystemd-dev
 
 sudo mkdir -p /var/log/php
 

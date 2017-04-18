@@ -12,7 +12,7 @@ if [ -n "`sudo dpkg -s mysql-server 2>/dev/null`" ]; then
 	exit 1
 fi
 
-sudo apt-get -y install pwgen debconf-utils
+sudo apt-get install -y pwgen debconf-utils
 
 PASSWORD=`pwgen -cns 12`
 

@@ -46,7 +46,7 @@ fi
 		exit 1
 	fi
 
-	sudo apt-get install --no-install-recommends gettext build-essential autoconf libtool \
+	sudo apt-get install -y --no-install-recommends gettext build-essential autoconf libtool \
 		libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev libudns-dev libsodium-dev
 
 	git checkout 'v'$VER
