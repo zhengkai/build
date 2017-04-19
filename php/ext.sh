@@ -1,111 +1,126 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
 PHP_SRC_DIR='/usr/local/src'
+EXT=(
+	'event     2.3.0'
+	'geoip     1.1.1'
+	'memcached 3.0.3'
+	'mongodb   1.2.8'
+	'msgpack   2.0.2'
+	'redis     3.1.2'
+	'xdebug    2.5.1'
+	'yaml      2.0.0'
+)
 
-cd `dirname $0`
-SCRIPT_DIR="`pwd`"
+echo 'install list: '
+for ((i = 0; i < ${#EXT[*]}; i++))
+do
+    echo -e "\t${EXT[$i]}"
+done
+echo
 
-run_make() {
+build_redis() {
+	phpize
+	./configure --disable-redis-session
+	do_make
+}
+
+build_memcached() {
+	sudo apt-get install -y libz-dev libmemcached-dev
+	phpize
+	./configure \
+		--disable-memcached-session \
+		--disable-memcached-sasl \
+		--enable-memcached-msgpack
+	do_make
+}
+
+build_yaml() {
+	sudo apt-get install -y libyaml-dev
+	build_common
+}
+
+build_xdebug() {
+	sudo apt-get install -y libsasl2-dev libssl-dev
+	build_common
+}
+
+build_event() {
+	sudo apt-get install -y libevent-dev
+	build_common
+}
+
+build_geoip() {
+	sudo apt-get install -y libgeoip-dev
+	build_common
+}
+
+# ====================================
+#          以下内容不需要更改
+# ====================================
+
+do_make() {
 	make -j "`grep -c '^processor' /proc/cpuinfo`"
 	strip --strip-all modules/*.so
 	sudo make install
 }
 
-common_run_make() {
+build_common() {
 	phpize
 	./configure
-	run_make
+	do_make
 }
 
-#
-# event
-#
+cd `dirname $0`
+SCRIPT_DIR="`pwd`"
 
-wget -q 'https://pecl.php.net/get/event-2.3.0.tgz' -O $PHP_SRC_DIR'/php-event.tgz'
-mkdir $PHP_SRC_DIR'/php-event'
-sudo apt-get install -y libevent-dev
-tar -xvf $PHP_SRC_DIR'/php-event.tgz' -C $PHP_SRC_DIR'/php-event' --strip-components=1
-rm $PHP_SRC_DIR'/php-event.tgz'
-cd $PHP_SRC_DIR'/php-event'
-common_run_make
+fetch_src() {
 
-#
-# Yaml
-#
+	package=${1%% *};
+	ver=${1##* };
 
-wget -q 'https://pecl.php.net/get/yaml-2.0.0.tgz' -O $PHP_SRC_DIR'/php-yaml.tgz'
-mkdir $PHP_SRC_DIR'/php-yaml'
-sudo apt-get install -y libyaml-dev
-tar -xvf $PHP_SRC_DIR'/php-yaml.tgz' -C $PHP_SRC_DIR'/php-yaml' --strip-components=1
-rm $PHP_SRC_DIR'/php-yaml.tgz'
-cd $PHP_SRC_DIR'/php-yaml'
-common_run_make
+	base="$package-$ver"
 
-#
-# Msgpack
-#
-wget -q 'https://pecl.php.net/get/msgpack-2.0.2.tgz' -O $PHP_SRC_DIR'/php-msgpack.tgz'
-mkdir $PHP_SRC_DIR'/php-msgpack'
-tar -xvf $PHP_SRC_DIR'/php-msgpack.tgz' -C $PHP_SRC_DIR'/php-msgpack' --strip-components=1
-rm $PHP_SRC_DIR'/php-msgpack.tgz'
-cd $PHP_SRC_DIR'/php-msgpack'
-common_run_make
+	dir="$PHP_SRC_DIR/phpext-$base"
+	echo $package $ver
+	echo $dir
+	echo
+	if [ -e $dir ]; then
+		>&2 echo '    dir exists, skip'
+		return 0
+	fi
 
-#
-# MongoDB
-#
+	filename="$base.tgz"
+	file="$PHP_SRC_DIR/phpext-$filename"
+	wget -q "https://pecl.php.net/get/$filename" -O $file
+	mkdir $dir
+	tar xzf $file -C $dir --strip-components=1
+	rm $file
+	cd $dir
 
-wget -q 'https://pecl.php.net/get/mongodb-1.2.8.tgz' -O $PHP_SRC_DIR'/php-mongodb.tgz'
-mkdir $PHP_SRC_DIR'/php-mongodb'
-tar -xvf $PHP_SRC_DIR'/php-mongodb.tgz' -C $PHP_SRC_DIR'/php-mongodb' --strip-components=1
-rm $PHP_SRC_DIR'/php-mongodb.tgz'
-cd $PHP_SRC_DIR'/php-mongodb'
-common_run_make
+	fn_make="make_$package"
+	set +e
+	`declare -f $fn_make >/dev/null 2>&1`
+	is_err=$?
+	set -e
+	if [ $is_err -eq 0 ]; then
+		$fn_make
+	else
+		build_common
+	fi
 
-#
-# Memcached
-#
-sudo apt-get install -y libz-dev libmemcached-dev
-wget -q 'https://pecl.php.net/get/memcached-3.0.3.tgz' -O $PHP_SRC_DIR'/php-memcached.tgz'
-mkdir $PHP_SRC_DIR'/php-memcached'
-tar -xvf $PHP_SRC_DIR'/php-memcached.tgz' -C $PHP_SRC_DIR'/php-memcached' --strip-components=1
-rm $PHP_SRC_DIR'/php-memcached.tgz'
-cd $PHP_SRC_DIR'/php-memcached'
-phpize
-./configure \
-	--disable-memcached-session \
-	--disable-memcached-sasl \
-	--enable-memcached-msgpack
-run_make
+	echo $package $ver install successful
+}
 
-#
-# Redis
-#
-wget -q 'https://pecl.php.net/get/redis-3.1.2.tgz' -O $PHP_SRC_DIR'/php-redis.tgz'
-mkdir $PHP_SRC_DIR'/php-redis'
-cd $PHP_SRC_DIR'/php-redis'
-tar -xvf $PHP_SRC_DIR'/php-redis.tgz' -C $PHP_SRC_DIR'/php-redis' --strip-components=1
-phpize
-./configure --disable-redis-session
-run_make
+for ((i = 0; i < ${#EXT[*]}; i++))
+do
+    fetch_src "${EXT[$i]}"
+	echo
+done
 
-#
-# Xdebug
-#
-sudo apt-get install -y libsasl2-dev libssl-dev
-wget -q 'https://pecl.php.net/get/xdebug-2.5.1.tgz' -O $PHP_SRC_DIR'/php-xdebug.tgz'
-mkdir $PHP_SRC_DIR'/php-xdebug'
-tar -xvf $PHP_SRC_DIR'/php-xdebug.tgz' -C $PHP_SRC_DIR'/php-xdebug' --strip-components=1
-rm $PHP_SRC_DIR'/php-xdebug.tgz'
-cd $PHP_SRC_DIR'/php-xdebug'
-common_run_make
+exit
 
-#
-# GeoIP
-#
-wget -q 'https://pecl.php.net/get/geoip-1.1.1.tgz' -O $PHP_SRC_DIR'/php-geoip.tgz'
-mkdir $PHP_SRC_DIR'/php-geoip'
-tar -xvf $PHP_SRC_DIR'/php-geoip.tgz' -C $PHP_SRC_DIR'/php-geoip' --strip-components=1
-rm $PHP_SRC_DIR'/php-geoip.tgz'
-cd $PHP_SRC_DIR'/php-geoip'
-common_run_make
+if [ "$FETCH_OK" == 'OK' ]; then
+	echo 'yes'
+	pwd
+fi
