@@ -68,7 +68,7 @@ fi
 
 	git checkout 'v'$VER
 
-	make clean 2>&1 || echo
+	make clean 2>&1 || :
 	make configure
 	./configure --prefix=/usr/local
 	make all doc info

@@ -54,7 +54,7 @@ fi
 
 	git checkout 'v'$VER
 
-	make clean 2>&1 || echo
+	make clean 2>&1 || :
 	./autogen.sh
 	./configure
 	make

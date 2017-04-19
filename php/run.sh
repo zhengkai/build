@@ -73,16 +73,18 @@ sudo cp -R etc/* /etc/php/
 cp config-fpm $PHP_SRC_DIR
 cp config-cli $PHP_SRC_DIR
 
+PROCESSOR="`grep -c '^processor' /proc/cpuinfo`"
+
 cd $PHP_SRC_DIR
-make clean 2>&1 || echo
+make clean 2>&1 || :
 ./config-fpm
-make -j $(grep -c "^processor" /proc/cpuinfo)
+make -j $PROCESSOR
 strip --strip-all sapi/fpm/php-fpm
 sudo make install
 
-make clean 2>&1 || echo
+make clean 2>&1 || :
 ./config-cli
-make -j $(grep -c "^processor" /proc/cpuinfo)
+make -j $PROCESSOR
 strip --strip-all sapi/cli/php
 strip --strip-all modules/*.a
 strip --strip-all modules/*.so

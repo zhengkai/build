@@ -55,7 +55,7 @@ fi
 
 	cd src
 
-	make clean 2>&1 || echo
+	make clean 2>&1 || :
 	make
 	sudo make install
 

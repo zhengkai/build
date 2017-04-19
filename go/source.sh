@@ -34,5 +34,5 @@ if ! [ -e $GOSRC_DIR ]; then
 fi
 
 cd $GOSRC_DIR'/src'
-GOROOT_BOOTSTRAP=$GOBIN_DIR ./clean.bash || echo 'clean'
+GOROOT_BOOTSTRAP=$GOBIN_DIR ./clean.bash || :
 GOROOT_BOOTSTRAP=$GOBIN_DIR ./all.bash

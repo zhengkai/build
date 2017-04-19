@@ -17,6 +17,11 @@
 
     session    required   pam_limits.so
 
-在 `/etc/rc.local` 文件增加
+安装为系统服务
+-------------
 
-    sudo -u shadowsocks /www/build/shadowsocks/start.sh >/dev/null 2>&1 &
+运行 `service` 目录下的 `./install.sh {local|server}`
+
+注意 server 版的脚本有条 iptables 规则禁止访问 localhost    
+如果不想启用规则请删除，更改端口请修改变量 `$OUT_IF`
+

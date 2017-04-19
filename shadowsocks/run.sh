@@ -61,4 +61,7 @@ fi
 
 	echo "$VER" > $VER_FILE
 
+	sudo /etc/init.d/ss-local restart || :
+	sudo /etc/init.d/ss-server restart || :
+
 ) 200>$LOCK_FILE
