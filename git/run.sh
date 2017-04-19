@@ -24,7 +24,7 @@ if [ "$('pwd')" != $SRC_DIR ]; then
 fi
 
 if [ ! -e $GIT_SRC_DIR ]; then
-	git clone git@github.com:git/git.git $GIT_SRC_DIR
+	git clone https://github.com/git/git.git $GIT_SRC_DIR
 fi
 cd $GIT_SRC_DIR
 if [ "$('pwd')" != $GIT_SRC_DIR ]; then

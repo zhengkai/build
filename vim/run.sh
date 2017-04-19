@@ -20,7 +20,7 @@ if [ "$('pwd')" != $SRC_DIR ]; then
 fi
 
 if [ ! -e $VIM_SRC_DIR ]; then
-	git clone git@github.com:vim/vim.git $VIM_SRC_DIR
+	git clone https://github.com/vim/vim.git $VIM_SRC_DIR
 fi
 cd $VIM_SRC_DIR
 if [ "$('pwd')" != $VIM_SRC_DIR ]; then

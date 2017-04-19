@@ -15,8 +15,8 @@
 '--with-pear' \
 '--enable-huge-code-pages' \
 '--enable-cli' \
-'--enable-libxml=shared' \
-'--enable-filter=shared' \
+'--enable-libxml' \
+'--enable-filter' \
 '--enable-bcmath=shared' \
 '--enable-calendar=shared' \
 '--enable-ctype=shared' \

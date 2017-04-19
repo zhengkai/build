@@ -14,7 +14,7 @@ if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 fi
 
 if [ ! -e $SS_SRC_DIR ]; then
-	git clone git@github.com:shadowsocks/shadowsocks-libev.git $SS_SRC_DIR
+	git clone https://github.com/shadowsocks/shadowsocks-libev.git $SS_SRC_DIR
 fi
 cd $SS_SRC_DIR
 if [ `pwd` != $SS_SRC_DIR ]; then
