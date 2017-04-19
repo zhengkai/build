@@ -22,7 +22,6 @@ echo
 build_redis() {
 	phpize
 	./configure --disable-redis-session
-	do_make
 }
 
 build_memcached() {
@@ -32,7 +31,6 @@ build_memcached() {
 		--disable-memcached-session \
 		--disable-memcached-sasl \
 		--enable-memcached-msgpack
-	do_make
 }
 
 build_yaml() {
@@ -68,7 +66,6 @@ do_make() {
 build_common() {
 	phpize
 	./configure
-	do_make
 }
 
 cd `dirname $0`
@@ -108,6 +105,7 @@ fetch_src() {
 	else
 		build_common
 	fi
+	do_make
 
 	echo $package $ver install successful
 }

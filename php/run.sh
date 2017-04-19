@@ -90,6 +90,8 @@ strip --strip-all modules/*.a
 strip --strip-all modules/*.so
 sudo make install
 
+$SCRIPT_DIR'/ext.sh'
+
 if [ ! -e '/usr/lib/php/doc/pman' ]; then
 	sudo pear channel-update doc.php.net
 	sudo pear install doc.php.net/pman
@@ -102,3 +104,6 @@ fi
 if [ ! -e '/etc/systemd/system/php-fpm.service' ];then
 	$SCRIPT_DIR'/fpm/install.sh'
 fi
+
+hash -r
+php -v
