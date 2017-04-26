@@ -57,11 +57,12 @@ fi
 
 	sudo apt-get install -y --no-install-recommends \
 		gettext \
+		automake \
+		build-essential \
 		libcurl4-openssl-dev \
 		libexpat1-dev \
 		libssl-dev \
-		libz-dev
-	sudo apt-get install -y --no-install-recommends \
+		libz-dev \
 		asciidoc \
 		docbook2x \
 		xmlto

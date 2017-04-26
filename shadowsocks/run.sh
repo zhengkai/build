@@ -46,7 +46,7 @@ fi
 	fi
 
 	sudo apt-get install -y --no-install-recommends \
-		automake build-essential autoconf gettext libtool \
+		automake build-essential gettext libtool \
 		libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev \
 		libudns-dev libsodium-dev
 

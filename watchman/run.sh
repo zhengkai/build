@@ -50,7 +50,9 @@ fi
 		exit 1
 	fi
 
-	sudo apt install -y automake
+	sudo apt-get install -y --no-install-recommends \
+		automake \
+		build-essential
 
 	git checkout 'v'$VER
 

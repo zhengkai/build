@@ -55,6 +55,10 @@ fi
 
 	cd src
 
+	sudo apt-get install -y --no-install-recommends \
+		build-essential \
+		libncurses5-dev
+
 	make clean 2>&1 || :
 	make
 	sudo make install
