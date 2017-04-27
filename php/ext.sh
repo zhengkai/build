@@ -8,7 +8,7 @@ EXT=(
 	'mongodb   1.2.8'
 	'msgpack   2.0.2'
 	'redis     3.1.2'
-	'xdebug    2.5.1'
+	'xdebug    2.5.3'
 	'yaml      2.0.0'
 )
 

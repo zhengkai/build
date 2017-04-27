@@ -54,6 +54,7 @@ fi
 
 	git submodule update --init --recursive
 
+	make clean 2>&1 || :
 	./autogen.sh
 	./configure
 	make
@@ -61,7 +62,11 @@ fi
 
 	echo "$VER" > $VER_FILE
 
-	sudo /etc/init.d/ss-local restart || :
-	sudo /etc/init.d/ss-server restart || :
+	if [ -x /etc/init.d/ss-local ]; then
+		sudo /etc/init.d/ss-local restart || :
+	fi
+	if [ -x /etc/init.d/ss-server ]; then
+		sudo /etc/init.d/ss-server restart || :
+	fi
 
 ) 200>$LOCK_FILE

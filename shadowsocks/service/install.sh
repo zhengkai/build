@@ -8,11 +8,11 @@ fi
 
 TYPE="${1,,}"
 
-if [ $TYPE == 'client' ]; then
+if [ "$TYPE" == 'client' ]; then
 	TYPE='local'
 fi
 
-case $TYPE in
+case "$TYPE" in
 	local)
 		CHECK='server'
 		;;
