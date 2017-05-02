@@ -10,6 +10,7 @@ EXT=(
 	'redis     3.1.2'
 	'xdebug    2.5.3'
 	'yaml      2.0.0'
+	'libsodium 1.0.6'
 )
 
 echo 'install list: '
@@ -31,6 +32,11 @@ build_memcached() {
 		--disable-memcached-session \
 		--disable-memcached-sasl \
 		--enable-memcached-msgpack
+}
+
+build_libsodium() {
+	sudo apt-get install -y libsodium-dev
+	build_common
 }
 
 build_yaml() {
