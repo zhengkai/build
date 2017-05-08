@@ -50,7 +50,6 @@ sudo apt-get install -y --no-install-recommends \
 	libbz2-dev \
 	libcurl4-openssl-dev \
 	libgmp-dev \
-	libmcrypt-dev \
 	libmhash-dev \
 	libreadline6-dev \
 	librecode-dev \

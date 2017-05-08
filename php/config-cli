@@ -23,6 +23,7 @@
 '--enable-dom=shared' \
 '--enable-fileinfo=shared' \
 '--enable-hash=shared' \
+'--enable-intl=shared' \
 '--enable-json=shared' \
 '--enable-mbregex-backtrack' \
 '--enable-mbregex=shared' \
@@ -49,7 +50,6 @@
 '--with-gettext=shared' \
 '--with-gmp=shared' \
 '--with-iconv=shared' \
-'--with-mcrypt=shared' \
 '--with-mhash=shared' \
 '--with-mysql-sock=/var/run/mysqld/mysqld.sock' \
 '--with-mysqli=shared,/usr/bin/mysql_config' \
