@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$( dirname "${BASH_SOURCE[0]}" )"
+cd $(dirname `readlink -f $0`)
 
 CONF_DIR='/etc/nginx/conf.d'
 

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-cd "$( dirname "${BASH_SOURCE[0]}" )"
+cd $(dirname `readlink -f $0`)
 
 sudo cp nginx.list /etc/apt/sources.list.d/
 sudo apt-key add nginx_signing.key

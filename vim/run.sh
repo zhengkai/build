@@ -4,7 +4,8 @@ SRC_DIR='/usr/local/src'
 
 VIM_SRC_DIR=$SRC_DIR'/vim'
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $(dirname `readlink -f $0`)
+SCRIPT_DIR=`pwd`
 LOCK_FILE=$SCRIPT_DIR'/update.lock'
 VER_FILE=$SCRIPT_DIR'/ver.txt'
 

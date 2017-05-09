@@ -1,6 +1,6 @@
 #! /bin/bash -e
 
-cd `dirname "${BASH_SOURCE[0]}"`
+cd $(dirname `readlink -f $0`)
 
 if [ -e ~/.my.cnf ]; then
 	>&2 echo '~/.my.cnf installed'
