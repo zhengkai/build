@@ -60,7 +60,10 @@ fi
 		build-essential \
 		libncurses5-dev
 
+	make distclean 2>&1 || :
+	rm auto/config.cache 2>&1 || :
 	make clean 2>&1 || :
+	./configure --enable-pythoninterp=yes --enable-python3interp=yes
 	make
 	sudo make install
 
