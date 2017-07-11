@@ -1,9 +1,8 @@
 #! /bin/bash -ex
 
-PHP_VER='7.1.5'
+PHP_VER='7.1.7'
 
-MD5SUM='b2ac302120d2eefd6cd9449790c45412'
-SHA256SUM='f7ff8039f5c3a7da4d62a3cce6378280224acfa27ab5a5bee25b7439bce01c17'
+SHA256SUM='e0dbab8da601ee5119368d6f93dc1a86ad53b799d2f8c1209d6b827a2b259f92'
 
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
@@ -29,7 +28,6 @@ if [ ! -e $PHP_SRC_FILE ]; then
 fi
 
 echo "$SHA256SUM  $PHP_SRC_FILE" | sha256sum -c
-echo    "$MD5SUM  $PHP_SRC_FILE" | md5sum -c
 
 mkdir -p $PHP_SRC_DIR
 

@@ -5,10 +5,10 @@ EXT=(
 	'event     2.3.0'
 	'geoip     1.1.1'
 	'memcached 3.0.3'
-	'mongodb   1.2.8'
+	'mongodb   1.2.9'
 	'msgpack   2.0.2'
 	'redis     3.1.2'
-	'xdebug    2.5.3'
+	'xdebug    2.5.5'
 	'yaml      2.0.0'
 	'libsodium 1.0.6'
 )
