@@ -7,10 +7,10 @@ EXT=(
 	'memcached 3.0.3'
 	'mongodb   1.2.9'
 	'msgpack   2.0.2'
-	'redis     3.1.2'
+	'redis     3.1.3'
 	'xdebug    2.5.5'
-	'yaml      2.0.0'
-	'libsodium 1.0.6'
+	'yaml      2.0.2'
+	'libsodium 2.0.4'
 )
 
 echo 'install list: '
@@ -101,13 +101,13 @@ fetch_src() {
 	rm $file
 	cd $dir
 
-	fn_make="make_$package"
+	fn_build="build_$package"
 	set +e
-	`declare -f $fn_make >/dev/null 2>&1`
+	`declare -f $fn_build >/dev/null 2>&1`
 	is_err=$?
 	set -e
 	if [ $is_err -eq 0 ]; then
-		$fn_make
+		$fn_build
 	else
 		build_common
 	fi
