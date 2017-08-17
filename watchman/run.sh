@@ -53,7 +53,8 @@ fi
 
 	sudo apt-get install -y --no-install-recommends \
 		automake \
-		build-essential
+		build-essential \
+		libtool
 
 	git checkout 'v'$VER
 
