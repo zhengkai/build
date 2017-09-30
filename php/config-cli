@@ -45,6 +45,7 @@
 '--enable-xml=shared' \
 '--enable-xmlwriter=shared' \
 '--enable-zip=shared' \
+'--with-gd=shared' \
 '--with-bz2=shared' \
 '--with-curl=shared' \
 '--with-gettext=shared' \
