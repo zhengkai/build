@@ -54,6 +54,7 @@ fi
 	sudo apt-get install -y --no-install-recommends \
 		automake \
 		build-essential \
+		pkg-config \
 		libtool
 
 	git checkout 'v'$VER

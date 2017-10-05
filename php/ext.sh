@@ -2,11 +2,11 @@
 
 PHP_SRC_DIR='/usr/local/src'
 EXT=(
+	'msgpack   2.0.2'
 	'event     2.3.0'
 	'geoip     1.1.1'
 	'memcached 3.0.3'
 	'mongodb   1.2.9'
-	'msgpack   2.0.2'
 	'redis     3.1.3'
 	'xdebug    2.5.5'
 	'yaml      2.0.2'
@@ -35,6 +35,11 @@ build_memcached() {
 
 build_yaml() {
 	sudo apt-get install -y libyaml-dev
+	build_common
+}
+
+build_msgpack() {
+	sudo apt-get install -y libmsgpack-dev
 	build_common
 }
 
