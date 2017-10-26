@@ -12,7 +12,7 @@ SCRIPT_DIR="$( cd "`dirname "$0"`" && pwd )"
 LOCK_FILE=$SCRIPT_DIR'/update.lock'
 VER_FILE=$SCRIPT_DIR'/ver.txt'
 
-VER=`curl -s https://nodejs.org/en/ | grep -Po 'Download v\d+\.\d+(\.\d+)? '$VER_CHOOSE | cut -d 'v' -f 2 | cut -d ' ' -f 1`
+VER=`curl -s https://nodejs.org/en/ | grep -Po 'Download \d+\.\d+(\.\d+)? '$VER_CHOOSE | cut -d ' ' -f 2`
 
 if [ -z "$VER" ]; then
 	>&2 echo 'cannot detect version'
