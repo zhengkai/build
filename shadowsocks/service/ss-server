@@ -33,6 +33,7 @@ do_start () {
 	    -j REJECT --reject-with icmp-host-prohibited
 
 	sudo -u $SSUSER "/usr/local/bin/$NAME" \
+		--reuse-port \
 		--fast-open \
 		--mptcp \
 		-c $CONFIG_FILE \
