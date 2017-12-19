@@ -45,6 +45,17 @@ fi
 		exit 1
 	fi
 
+	sudo apt-get install --no-install-recommends \
+		build-essential \
+		autoconf \
+		libtool \
+		libssl-dev \
+		libpcre3-dev \
+		libev-dev \
+		asciidoc \
+		xmlto \
+		automake
+
 	git checkout 'v'$VER
 
 	git submodule update --init --recursive
