@@ -17,12 +17,12 @@ if ! [ $(pwd) == $SRC_PATH ]; then
 fi
 
 GOBIN_NAME='go'$GOBIN_VER'.linux-amd64.tar.gz'
-GOBIN_FILE=$SRC_PATH'/'$GOBIN_NAME
+GOBIN_FILE="$SRC_PATH/$GOBIN_NAME"
 if ! [ -e $GOBIN_FILE ]; then
 	wget 'https://storage.googleapis.com/golang/'$GOBIN_NAME -O $GOBIN_FILE
 fi
 
-GOBIN_DIR=$SRC_PATH'/gobin'$GOBIN_VER
+GOBIN_DIR="$SRC_PATH/gobin$GOBIN_VER"
 if ! [ -e $GOBIN_DIR'/LICENSE' ]; then
 	mkdir -p $GOBIN_DIR
 	tar -xf $GOBIN_FILE -C $GOBIN_DIR --strip-components=1
