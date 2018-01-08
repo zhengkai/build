@@ -8,9 +8,10 @@ EXT=(
 	'memcached 3.0.3'
 	'mongodb   1.3.1'
 	'redis     3.1.4'
-	'xdebug    2.5.5'
 	'yaml      2.0.2'
 )
+
+#	'xdebug    2.5.5'
 
 echo 'install list: '
 for ((i = 0; i < ${#EXT[*]}; i++))
