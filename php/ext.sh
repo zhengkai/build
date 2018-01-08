@@ -5,8 +5,8 @@ EXT=(
 	'msgpack   2.0.2'
 	'event     2.3.0'
 	'geoip     1.1.1'
-	'memcached 3.0.3'
-	'mongodb   1.3.1'
+	'memcached 3.0.4'
+	'mongodb   1.3.4'
 	'redis     3.1.4'
 	'yaml      2.0.2'
 )
