@@ -7,11 +7,10 @@ EXT=(
 	'geoip     1.1.1'
 	'memcached 3.0.4'
 	'mongodb   1.3.4'
-	'redis     3.1.4'
+	'redis     3.1.6'
 	'yaml      2.0.2'
+	'xdebug    2.6.0'
 )
-
-#	'xdebug    2.5.5'
 
 echo 'install list: '
 for ((i = 0; i < ${#EXT[*]}; i++))
