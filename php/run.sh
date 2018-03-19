@@ -1,8 +1,8 @@
 #! /bin/bash -ex
 
-PHP_VER='7.2.2'
+PHP_VER='7.2.3'
 
-SHA256SUM='5963df05fec21927c03fe9f7bf379be2d1eacde6c0f9dcde6143c7133e55abd4'
+SHA256SUM='5dc98f2266db40c5e4d9b5edf5e29e2449e819fff8321a07eb3830cf0b104bbb'
 
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
