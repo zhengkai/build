@@ -32,3 +32,4 @@ zhengkai/build
 * `php` 手动更新版本，全部 shared 编译，不要安装系统自带的 PHP，会冲突
 * `ssh` 安全检查，禁用 password
 * `vbox` 将某个 VirtualBox instance 作为服务随系统自动开关机
+* `rc-local` 高版本 Ubuntu 没有 rc.local 后的替代品

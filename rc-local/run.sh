@@ -1,5 +1,7 @@
 #!/bin/bash -ex
 
+# via https://askubuntu.com/questions/886620/how-can-i-execute-command-on-startup-rc-local-alternative-on-ubuntu-16-10
+
 cd $(dirname `readlink -f $0`)
 
 if [ ! -e /etc/systemd/system/rc-local.service ]; then
