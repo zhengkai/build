@@ -6,8 +6,8 @@ EXT=(
 	'event     2.3.0'
 	'geoip     1.1.1'
 	'memcached 3.0.4'
-	'mongodb   1.4.2'
-	'redis     3.1.6'
+	'mongodb   1.4.3'
+	'redis     4.0.2'
 	'yaml      2.0.2'
 	'xdebug    2.6.0'
 )
