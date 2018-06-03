@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 cd $(dirname `readlink -f $0`)
-GOBIN_VER=`./get_ver.sh`
+GOBIN_VER=`./get-ver.sh`
 
 if [ -z "$GOBIN_VER" ]; then
 	>&2 echo 'can not detect go version'
