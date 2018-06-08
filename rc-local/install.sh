@@ -5,12 +5,17 @@
 cd $(dirname `readlink -f $0`)
 
 if [ ! -e /etc/systemd/system/rc-local.service ]; then
-	sudo cp rc-local.service /etc/systemd/system/rc-local.service
+	sudo cp service /etc/systemd/system/rc-local.service
 fi
 
 if [ ! -e /etc/rc.local ]; then
 	sudo cp rc.local /etc/rc.local
 	sudo chmod +x /etc/rc.local
+fi
+
+if [ ! -e /sbin/run-rc-local.sh ]; then
+	sudo cp run-rc-local.sh /sbin/run-rc-local.sh
+	sudo chmod +x /sbin/run-rc-local.sh
 fi
 
 sudo systemctl enable rc-local
