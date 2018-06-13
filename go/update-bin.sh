@@ -12,7 +12,7 @@ cd $(dirname `readlink -f $0`)
 		CURRENT_VER=`cat ver.txt`
 	fi
 
-	CHECK_VER=`./get_ver.sh`
+	CHECK_VER=`./get-ver.sh`
 
 	if [ "$CURRENT_VER" == "$CHECK_VER" ]; then
 		echo
