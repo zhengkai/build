@@ -49,6 +49,7 @@ sudo apt-get install -y --no-install-recommends \
 	libcurl4-openssl-dev \
 	libgmp-dev \
 	libmhash-dev \
+	libpng-dev \
 	libreadline6-dev \
 	librecode-dev \
 	libssl-dev \
