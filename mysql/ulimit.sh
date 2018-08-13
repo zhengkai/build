@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/bash -ex
+
+# ulimit 限制 http://serverfault.com/a/815837/183566
 
 LIMIT=102400
 
@@ -9,9 +11,12 @@ if [ -f $SERVICE_FILE ]; then
 	echo $GREP
 	if [ -z "$GREP" ]; then
 		sudo sed -i 's/\[Service\]$/[Service]\nLimitNOFILE='$LIMIT'/g' $SERVICE_FILE
-		sudo systemctl daemon-reload
-		sudo systemctl restart mysql.service
+	else
+		sudo sed -i "s/^LimitNOFILE.*\$/LimitNOFILE=${LIMIT}/g" $SERVICE_FILE
 	fi
+
+	sudo systemctl daemon-reload
+	sudo systemctl restart mysql.service
 fi
 
 cat "/proc/`pgrep mysql`/limits" | grep files

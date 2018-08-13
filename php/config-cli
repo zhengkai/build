@@ -53,9 +53,8 @@
 '--with-iconv=shared' \
 '--with-mhash=shared' \
 '--with-mysql-sock=/var/run/mysqld/mysqld.sock' \
-'--with-mysqli=shared,/usr/bin/mysql_config' \
+'--with-mysqli=shared' \
 '--with-openssl=shared' \
-'--with-pdo-mysql=shared' \
 '--with-pdo-mysql=shared' \
 '--with-readline=shared' \
 '--with-recode=shared' \

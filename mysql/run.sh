@@ -12,7 +12,7 @@ if [ -n "`sudo dpkg -s mysql-server 2>/dev/null`" ]; then
 	exit 1
 fi
 
-sudo apt-get install -y pwgen debconf-utils
+sudo apt install -y pwgen debconf-utils
 
 PASSWORD=`pwgen -cns 12`
 
@@ -21,6 +21,19 @@ PASSWORD=`pwgen -cns 12`
 sed 's/^password=$/password='$PASSWORD'/g' ./templet.cnf > ~/.my.cnf
 chmod 600 ~/.my.cnf
 
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password '$PASSWORD
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password '$PASSWORD
-sudo apt-get -y install mysql-server
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $PASSWORD"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PASSWORD"
+
+# https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-repo-manual-setup
+
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5
+
+LIST_FILE='/etc/apt/sources.list.d/mysql.list'
+if [ ! -e "$LIST_FILE" ]; then
+	sudo cp source.list "$LIST_FILE"
+fi
+sudo apt update
+
+sudo apt install -y mysql-server
+
+# sudo apt install libmysqlclient-dev

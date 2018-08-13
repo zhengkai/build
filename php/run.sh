@@ -1,8 +1,8 @@
 #! /bin/bash -ex
 
-PHP_VER='7.2.7'
+PHP_VER='7.2.8'
 
-SHA256SUM='014f0560cfa22e6301b0024a6fd888c3612a0dc102ff355fa2b49544d16d43b1'
+SHA256SUM='a0cb9bf2f78498fc090eb553df03cdacc198785dec0818efa7a1804c2b7a8722'
 
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
@@ -24,7 +24,7 @@ fi
 
 PHP_SRC_FILE=$SRC_DIR'/php-'$PHP_VER'.tar.gz'
 if [ ! -e $PHP_SRC_FILE ]; then
-	wget 'http://cn.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
+	wget 'http://jp2.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
 fi
 
 echo "$SHA256SUM  $PHP_SRC_FILE" | sha256sum -c

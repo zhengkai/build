@@ -2,14 +2,17 @@
 
 PHP_SRC_DIR='/usr/local/src'
 EXT=(
-	'msgpack   2.0.2'
-	'event     2.3.0'
+	'event     2.4.1'
 	'geoip     1.1.1'
+	'grpc      1.14.1'
+	'libsodium 2.0.11'
 	'memcached 3.0.4'
-	'mongodb   1.5.0'
-	'redis     4.0.2'
+	'mongodb   1.5.2'
+	'msgpack   2.0.2'
+	'protobuf  3.6.1'
+	'redis     4.1.1'
+	'xdebug    2.6.1'
 	'yaml      2.0.2'
-	'xdebug    2.6.0'
 )
 
 echo 'install list: '
