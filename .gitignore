@@ -12,3 +12,5 @@
 /nodejs/ver.txt
 /nodejs/update.lock
 /gitflow/gitflow/
+
+*.deb
