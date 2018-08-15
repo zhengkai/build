@@ -20,9 +20,11 @@ if [ "$('pwd')" != $SRC_DIR ]; then
 fi
 
 if [ ! -e $GIT_SRC_DIR ]; then
-	git clone https://github.com/facebook/watchman.git $GIT_SRC_DIR
+	# git clone https://github.com/facebook/watchman.git $GIT_SRC_DIR
+	git clone git@github.com:facebook/watchman.git $GIT_SRC_DIR
 fi
 cd $GIT_SRC_DIR
+
 if [ "$('pwd')" != $GIT_SRC_DIR ]; then
 	>&2 echo 'fail to cd '$GIT_SRC_DIR
 	exit 1
