@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(dirname `readlink -f $0`)
+
 echo kernel: `sudo uname -r`
 
 ERR=`sudo modprobe tcp_bbr 2>&1`
@@ -22,5 +24,12 @@ if [ ! -f "$SYS_CONF" ]; then
 fi
 
 sudo sysctl net.ipv4.tcp_available_congestion_control
-sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
-sudo sysctl net.ipv4.tcp_congestion_control
+sudo sysctl -p "$SYS_CONF"
+
+CHECK=`sudo sysctl -p "$SYS_CONF" | grep ' = bbr'`
+if [ -z "$CHECK" ]; then
+	>&2 echo 'FAIL'
+	exit 1
+fi
+
+echo OK, done
