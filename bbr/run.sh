@@ -12,7 +12,7 @@ fi
 
 MOD_CONF='/etc/modules-load.d/modules.conf'
 GREP=`grep 'tcp_bbr' "$MOD_CONF"`
-if [ -z "$GREP" ]; then
+if [ "$GREP" != 'tcp_bbr' ]; then
 	echo 'tcp_bbr' | sudo tee -a "$MOD_CONF"
 	echo add tcp_bbr to "$MOD_CONF"
 fi
@@ -26,7 +26,7 @@ fi
 sudo sysctl net.ipv4.tcp_available_congestion_control
 sudo sysctl -p "$SYS_CONF"
 
-CHECK=`sudo sysctl -p "$SYS_CONF" | grep ' = bbr'`
+CHECK=`sudo sysctl net.ipv4.tcp_congestion_control | grep 'control = bbr'`
 if [ -z "$CHECK" ]; then
 	>&2 echo 'FAIL'
 	exit 1
