@@ -76,13 +76,13 @@ PROCESSOR="`grep -c '^processor' /proc/cpuinfo`"
 cd $PHP_SRC_DIR
 make clean 2>&1 || :
 ./config-fpm
-make -j $PROCESSOR
+make -j "$PROCESSOR"
 strip --strip-all sapi/fpm/php-fpm
 sudo make install
 
 make clean 2>&1 || :
 ./config-cli
-make -j $PROCESSOR
+make -j "$PROCESSOR"
 strip --strip-all sapi/cli/php
 strip --strip-all modules/*.a
 strip --strip-all modules/*.so

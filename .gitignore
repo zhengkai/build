@@ -11,6 +11,8 @@
 /shadowsocks/update.lock
 /nodejs/ver.txt
 /nodejs/update.lock
+/openssl/ver.txt
+/openssl/update.lock
 /gitflow/gitflow/
 
 *.deb
