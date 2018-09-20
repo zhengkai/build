@@ -2,10 +2,10 @@
 
 cd $(dirname `readlink -f $0`)
 
-sudo cp nginx.list /etc/apt/sources.list.d/
+sudo cp source.list /etc/apt/sources.list.d/nginx.list
 sudo apt-key add nginx-signing.key
-sudo apt-get update
-sudo apt-get install -y nginx
+sudo apt update
+sudo apt install -y nginx
 
 if [ -e '/etc/nginx/fastcgi_params' ]; then
 	check_param=`grep 'SCRIPT_FILENAME' /etc/nginx/fastcgi_params`
