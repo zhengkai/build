@@ -63,6 +63,12 @@ fi
 		echo '/usr/local/ssl' | sudo tee "$PATH_FILE"
 	fi
 
+	CAPATH='/usr/local/ssl/certs'
+	if [ ! -h "$CAPATH" ]; then
+		sudo rm -r "$CAPATH"
+		sudo ln -s /etc/ssh/cert "$CAPATH"
+	fi
+
 	echo "$VER" > "$VER_FILE"
 
 ) 200>"$LOCK_FILE"
