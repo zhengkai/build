@@ -36,6 +36,11 @@ build_memcached() {
 		--enable-memcached-msgpack
 }
 
+build_libsodium() {
+	sudo apt-get install -y libsodium-dev
+	build_common
+}
+
 build_yaml() {
 	sudo apt-get install -y libyaml-dev
 	build_common
