@@ -8,7 +8,7 @@ sudo cp source.list /etc/apt/sources.list.d/elasticsearch.list
 sudo apt-key add gpg.key
 sudo apt update
 
-sudo apt install elasticsearch kibana logstash
+sudo apt install -y elasticsearch kibana
 
 sudo systemctl daemon-reload
 
@@ -20,3 +20,8 @@ sudo systemctl start kibana.service
 
 sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip
 sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-user-agent
+
+# logstash
+sudo apt install -y openjdk-8-jre-headless
+sudo apt install -y logstash
+# edit file /etc/logstash/startup.options
