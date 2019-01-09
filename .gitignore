@@ -9,6 +9,8 @@
 /shadowsocks/ver.txt
 /shadowsocks/ver-obfs.txt
 /shadowsocks/update.lock
+/imagemagick/ver.txt
+/imagemagick/update.lock
 /nodejs/ver.txt
 /nodejs/update.lock
 /openssl/ver.txt
