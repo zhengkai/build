@@ -7,8 +7,7 @@ SHA256SUM='e563cee406b1ec96649c22ed2b35796cfe4e9aa9afa6eab6be4cf2fe5d724744'
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
-cd $(dirname `readlink -f "$0"`)
-SCRIPT_DIR=`pwd`
+DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	>&2 echo 'no dir '$PHP_SRC_DIR
@@ -62,7 +61,7 @@ if [ ! -e /usr/include/gmp.h ]; then
 	sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 fi
 
-cd $SCRIPT_DIR
+cd "$DIR"
 
 sudo mkdir -p /etc/php/fpm/conf.d
 sudo mkdir -p /etc/php/cli/conf.d
@@ -88,7 +87,7 @@ strip --strip-all modules/*.a
 strip --strip-all modules/*.so
 sudo make install
 
-$SCRIPT_DIR'/ext.sh'
+"${DIR}/ext.sh"
 
 if [ ! -e '/usr/lib/php/doc/pman' ]; then
 	sudo pear channel-update doc.php.net
@@ -96,11 +95,11 @@ if [ ! -e '/usr/lib/php/doc/pman' ]; then
 fi
 BASHCOMP_DIR='/etc/bash_completion.d'
 if [ -d $BASHCOMP_DIR ] && [ ! -e "$BASHCOMP_DIR/pman" ]; then
-	sudo cp $SCRIPT_DIR'/pman' $BASHCOMP_DIR
+	sudo cp "${DIR}/pman" $BASHCOMP_DIR
 fi
 
 if [ ! -e '/etc/systemd/system/php-fpm.service' ];then
-	$SCRIPT_DIR'/fpm/install.sh'
+	"${DIR}/fpm/install.sh"
 fi
 
 hash -r

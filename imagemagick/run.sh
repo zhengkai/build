@@ -4,10 +4,9 @@ SRC_DIR='/usr/local/src'
 
 IM_SRC_DIR="${SRC_DIR}/imagemagick"
 
-cd $(dirname `readlink -f "$0"`)
-SCRIPT_DIR=`pwd`
-LOCK_FILE="${SCRIPT_DIR}/update.lock"
-VER_FILE="${SCRIPT_DIR}/ver.txt"
+DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
+LOCK_FILE="${DIR}/update.lock"
+VER_FILE="${DIR}/ver.txt"
 
 if [ ! -d "$SRC_DIR" ] || [ ! -w "$SRC_DIR" ]; then
 	>&2 echo no dir $IM_SRC_DIR
