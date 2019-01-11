@@ -7,7 +7,7 @@ SHA256SUM='e563cee406b1ec96649c22ed2b35796cfe4e9aa9afa6eab6be4cf2fe5d724744'
 SRC_DIR='/usr/local/src'
 PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
-cd $(dirname `readlink -f $0`)
+cd $(dirname `readlink -f "$0"`)
 SCRIPT_DIR=`pwd`
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
