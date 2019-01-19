@@ -59,6 +59,9 @@ fi
 
 	git checkout "$VER"
 
+	sudo apt-get install -y --no-install-recommends \
+		libjpeg-dev
+
 	make clean || :
 	./configure
 
