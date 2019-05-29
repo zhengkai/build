@@ -14,19 +14,16 @@ fi
 
 sudo apt install -y pwgen debconf-utils
 
-PASSWORD=`pwgen -cns 12`
+# https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-repo-manual-setup
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5072E1F5
 
-# echo $PASSWORD
+PASSWORD=`pwgen -cns 12`
 
 sed 's/^password=$/password='$PASSWORD'/g' ./templet.cnf > ~/.my.cnf
 chmod 600 ~/.my.cnf
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $PASSWORD"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PASSWORD"
-
-# https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-repo-manual-setup
-
-sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5
 
 LIST_FILE='/etc/apt/sources.list.d/mysql.list'
 if [ ! -e "$LIST_FILE" ]; then

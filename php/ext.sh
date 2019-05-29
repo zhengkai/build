@@ -13,6 +13,7 @@ EXT=(
 	'redis     4.1.1'
 	'xdebug    2.6.1'
 	'yaml      2.0.2'
+	'mysql_xdevapi 8.0.16'
 )
 
 echo 'install list: '
