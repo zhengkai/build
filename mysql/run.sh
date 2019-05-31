@@ -1,6 +1,6 @@
 #! /bin/bash -ex
 
-cd $(dirname `readlink -f $0`)
+DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
 
 if [ -e ~/.my.cnf ]; then
 	>&2 echo '~/.my.cnf installed'
