@@ -1,20 +1,42 @@
-#!/bin/bash -x
+#!/bin/bash -e
 
-cd $(dirname `readlink -f $0`)
-GOBIN_VER=`./get-ver.sh`
+DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
 
-if [ -z "$GOBIN_VER" ]; then
-	>&2 echo 'can not detect go version'
-	exit 1
-fi
+/usr/local/go/bin/go version || :
 
-GOBIN_NAME='go'$GOBIN_VER'.linux-amd64.tar.gz'
-GOBIN_FILE='/tmp/'$GOBIN_NAME
-if ! [ -e $GOBIN_FILE ]; then
-	wget 'https://dl.google.com/go/'$GOBIN_NAME -O $GOBIN_FILE
-fi
+(
+	flock -x -n 200 || exit 1
 
-if [ -e /usr/local/go ]; then
-	sudo rm -rf /usr/local/go
-fi
-sudo tar -C /usr/local -xzf $GOBIN_FILE
+	CHECK_VER=`./get-ver.sh`
+	if [ -z "$CHECK_VER" ]; then
+		>&2 echo 'can not detect go version'
+		exit 1
+	fi
+
+	CURRENT_VER=''
+	VER_FILE='ver.txt'
+	if [ -f "$VER_FILE" ]; then
+		CURRENT_VER=`cat ver.txt`
+	fi
+	if [ "$CURRENT_VER" == "$CHECK_VER" ]; then
+		echo
+		echo "newest version '$CHECK_VER', no need update"
+		echo
+		exit
+	fi
+
+	GOBIN_NAME="go${CHECK_VER}.linux-amd64.tar.gz"
+	GOBIN_FILE="/tmp/${GOBIN_NAME}"
+	if ! [ -e "$GOBIN_FILE" ]; then
+		wget "https://dl.google.com/go/${GOBIN_NAME}" -O "$GOBIN_FILE"
+	fi
+
+	if [ -e /usr/local/go ]; then
+		sudo rm -rf /usr/local/go
+	fi
+	sudo tar -C /usr/local -xzf "$GOBIN_FILE"
+
+	/usr/local/go/bin/go version
+	echo $CHECK_VER > $VER_FILE
+
+) 200>update-bin.lock
