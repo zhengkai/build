@@ -37,6 +37,6 @@ DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
 	sudo tar -C /usr/local -xzf "$GOBIN_FILE"
 
 	/usr/local/go/bin/go version
-	echo $CHECK_VER > $VER_FILE
+	echo "$CHECK_VER" > "$VER_FILE"
 
 ) 200>update-bin.lock
