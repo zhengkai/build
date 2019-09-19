@@ -48,9 +48,14 @@ echo $URL
 		exit 1
 	fi
 
-	wget "$URL" -O "${SRC_DIR}${FILE}"
+	SAVE_FILE="${SRC_DIR}${FILE}"
+	if [ -e "$SAVE_FILE" ]; then
+	    rm "$SAVE_FILE"
+	fi
+	wget "$URL" -O "$SAVE_FILE"
+
 	mkdir -p "$FILE_DIR"
-	tar -xf "${SRC_DIR}${FILE}" -C "$FILE_DIR" --strip-components=1
+	tar -xf "${SAVE_FILE}" -C "$FILE_DIR" --strip-components=1
 
 	SUB_DIR=('bin' 'include' 'lib' 'share')
 	for i in "${SUB_DIR[@]}"; do
