@@ -1,8 +1,13 @@
 #!/bin/bash -e
 
+GO_SITE='https://dl.google.com/go/'
+#GO_SITE='https://mirrors.ustc.edu.cn/golang/'
+
 DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
 
-/usr/local/go/bin/go version || :
+if [ -e /usr/local/go/bin/go ]; then
+	/usr/local/go/bin/go version || :
+fi
 
 (
 	flock -x -n 200 || exit 1
@@ -25,10 +30,20 @@ DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
 		exit
 	fi
 
-	GOBIN_NAME="go${CHECK_VER}.linux-amd64.tar.gz"
+	ARCH=`arch`
+	if [ "$ARCH" == 'x86_64' ]; then
+		ARCH='amd64'
+	elif [ "$ARCH" == 'aarch64' ]; then
+		ARCH='arm64'
+	else
+		>&2 echo unknown arch $ARCH
+		exit
+	fi
+
+	GOBIN_NAME="go${CHECK_VER}.linux-${ARCH}.tar.gz"
 	GOBIN_FILE="/tmp/${GOBIN_NAME}"
 	if ! [ -e "$GOBIN_FILE" ]; then
-		wget "https://dl.google.com/go/${GOBIN_NAME}" -O "$GOBIN_FILE"
+		wget "${GO_SITE}${GOBIN_NAME}" -O "$GOBIN_FILE"
 	fi
 
 	if [ -e /usr/local/go ]; then

@@ -1,8 +1,29 @@
 #! /bin/bash
 
+CODENAME=`lsb_release -c -s`
+
+ARCH=`arch`
+if [ "$ARCH" == 'x86_64' ]; then
+	ARCH='amd64'
+elif [ "$ARCH" == 'aarch64' ]; then
+	ARCH='arm64'
+else
+	>&2 echo unknown arch $ARCH
+	exit
+fi
+
 cd $(dirname `readlink -f $0`)
 
-sudo cp source.list /etc/apt/sources.list.d/nginx.list
+SOURCE='source.list'
+
+echo "deb [arch=${ARCH}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx" > "$SOURCE"
+echo "deb-src [arch=${ARCH}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx" >> "$SOURCE"
+
+cat "$SOURCE"
+
+exit
+
+sudo cp "$SOURCE" /etc/apt/sources.list.d/nginx.list
 sudo apt-key add nginx-signing.key
 sudo apt update
 sudo apt install -y nginx

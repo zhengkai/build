@@ -2,7 +2,7 @@
 
 SRC_DIR='/usr/local/src'
 
-VIM_SRC_DIR=$SRC_DIR'/vim'
+VIM_SRC_DIR="${SRC_DIR}/vim"
 
 cd $(dirname `readlink -f $0`)
 SCRIPT_DIR=`pwd`
@@ -20,12 +20,12 @@ if [ "$('pwd')" != $SRC_DIR ]; then
 	exit 1
 fi
 
-if [ ! -e $VIM_SRC_DIR ]; then
-	git clone git@github.com:vim/vim.git $VIM_SRC_DIR
+if [ ! -e "$VIM_SRC_DIR" ]; then
+	git clone --depth=10 git@github.com:vim/vim.git "$VIM_SRC_DIR"
 fi
-cd $VIM_SRC_DIR
-if [ "$('pwd')" != $VIM_SRC_DIR ]; then
-	>&2 echo 'fail to cd '$VIM_SRC_DIR
+cd "$VIM_SRC_DIR"
+if [ "$('pwd')" != "$VIM_SRC_DIR" ]; then
+	>&2 echo fail to cd $VIM_SRC_DIR
 	exit 1
 fi
 
