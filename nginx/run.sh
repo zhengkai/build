@@ -21,8 +21,6 @@ echo "deb-src [arch=${ARCH}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx
 
 cat "$SOURCE"
 
-exit
-
 sudo cp "$SOURCE" /etc/apt/sources.list.d/nginx.list
 sudo apt-key add nginx-signing.key
 sudo apt update
