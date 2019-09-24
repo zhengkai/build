@@ -69,4 +69,8 @@ fi
 		sudo /etc/init.d/ss-server restart || :
 	fi
 
+	if [ ! -e /usr/local/bin/obfs-server ]; then
+		"${SCRIPT_DIR}/obfs.sh"
+	fi
+
 ) 200>$LOCK_FILE

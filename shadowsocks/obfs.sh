@@ -45,7 +45,7 @@ fi
 		exit 1
 	fi
 
-	sudo apt-get install --no-install-recommends \
+	sudo apt-get install -y --no-install-recommends \
 		build-essential \
 		autoconf \
 		libtool \
