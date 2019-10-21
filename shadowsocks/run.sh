@@ -1,24 +1,24 @@
 #!/bin/bash -e
 
 SRC_DIR='/usr/local/src'
-SS_SRC_DIR=$SRC_DIR'/shadowsocks'
+SS_SRC_DIR="${SRC_DIR}/shadowsocks"
 
 cd $(dirname `readlink -f $0`)
 SCRIPT_DIR=`pwd`
-LOCK_FILE=$SCRIPT_DIR'/update.lock'
-VER_FILE=$SCRIPT_DIR'/ver.txt'
+LOCK_FILE="${SCRIPT_DIR}/update.lock"
+VER_FILE="${SCRIPT_DIR}/ver.txt"
 
-if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
-	>&2 echo 'no dir '$SRC_DIR
+if [ ! -d "$SRC_DIR" ] || [ ! -w "$SRC_DIR" ]; then
+	>&2 echo no dir $SRC_DIR
 	exit 1
 fi
 
-if [ ! -e $SS_SRC_DIR ]; then
-	git clone https://github.com/shadowsocks/shadowsocks-libev.git $SS_SRC_DIR
+if [ ! -e "$SS_SRC_DIR" ]; then
+	git clone https://github.com/shadowsocks/shadowsocks-libev.git "$SS_SRC_DIR"
 fi
-cd $SS_SRC_DIR
+cd "$SS_SRC_DIR"
 if [ `pwd` != $SS_SRC_DIR ]; then
-	>&2 echo 'fail to cd '$SS_SRC_DIR
+	>&2 echo fail to cd $SS_SRC_DIR
 	exit 1
 fi
 
@@ -58,9 +58,14 @@ fi
 	./autogen.sh
 	./configure
 	make
+
+	if [ "${0}" == 'kill' ]; then
+		"${SCRIPT_DIR}/kill.sh"
+	fi
+
 	sudo make install
 
-	echo "$VER" > $VER_FILE
+	echo "$VER" > "$VER_FILE"
 
 	if [ -x /etc/init.d/ss-local ]; then
 		sudo /etc/init.d/ss-local restart || :
