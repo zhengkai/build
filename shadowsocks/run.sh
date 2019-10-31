@@ -57,7 +57,7 @@ cd "$SS_SRC_DIR"
 	./configure
 	make
 
-	if [ "${0}" == 'kill' ]; then
+	if [ "$1" == 'kill' ]; then
 		"${DIR}/kill.sh"
 	fi
 
