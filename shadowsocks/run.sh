@@ -41,10 +41,12 @@ cd "$SS_SRC_DIR"
 		exit 1
 	fi
 
-	sudo apt-get install -y --no-install-recommends \
-		automake build-essential gettext libtool libc-ares-dev \
-		libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev \
-		libudns-dev libsodium-dev
+	if [ -z "$PREV_VER" ]; then
+		sudo apt-get install -y --no-install-recommends \
+			automake build-essential gettext libtool libc-ares-dev \
+			libpcre3-dev asciidoc xmlto libmbedtls-dev libev-dev \
+			libudns-dev libsodium-dev
+	fi
 
 	git checkout "v${VER}"
 
