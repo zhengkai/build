@@ -4,10 +4,10 @@ SRC_DIR='/usr/local/src'
 
 VIM_SRC_DIR="${SRC_DIR}/vim"
 
-cd $(dirname `readlink -f $0`)
-SCRIPT_DIR=`pwd`
-LOCK_FILE=$SCRIPT_DIR'/update.lock'
-VER_FILE=$SCRIPT_DIR'/ver.txt'
+DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
+
+LOCK_FILE="${DIR}/update.lock"
+VER_FILE="${DIR}/ver.txt"
 
 if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	>&2 echo 'no dir '$VIM_SRC_DIR
@@ -15,19 +15,11 @@ if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 fi
 
 cd $SRC_DIR
-if [ "$('pwd')" != $SRC_DIR ]; then
-	>&2 echo 'fail to cd '$SRC_DIR
-	exit 1
+if [ ! -e "$VIM_SRC_DIR" ]; then
+	git clone --depth=10 https://github.com/vim/vim.git "$VIM_SRC_DIR"
 fi
 
-if [ ! -e "$VIM_SRC_DIR" ]; then
-	git clone --depth=10 git@github.com:vim/vim.git "$VIM_SRC_DIR"
-fi
 cd "$VIM_SRC_DIR"
-if [ "$('pwd')" != "$VIM_SRC_DIR" ]; then
-	>&2 echo fail to cd $VIM_SRC_DIR
-	exit 1
-fi
 
 (
 	flock -x -n 200 || exit 1
@@ -48,18 +40,18 @@ fi
 	fi
 
 	if [ "$VER" == "$PREV_VER" ]; then
-		>&2 echo 'newest version '$VER', no need update'
+		>&2 echo newest version $VER, no need update
 		exit 1
 	fi
+	git checkout "v${VER}"
 
-	git checkout 'v'$VER
+	if [ -z "$PREV_VER" ]; then
+		sudo apt-get install -y --no-install-recommends \
+			build-essential \
+			libncurses5-dev
+	fi
 
 	cd src
-
-	sudo apt-get install -y --no-install-recommends \
-		build-essential \
-		libncurses5-dev
-
 	make distclean 2>&1 || :
 	rm auto/config.cache 2>&1 || :
 	make clean 2>&1 || :
