@@ -54,4 +54,10 @@ fi
 	/usr/local/go/bin/go version
 	echo "$CHECK_VER" > "$VER_FILE"
 
+	if [ -n "$CURRENT_VER" ]; then
+		echo
+		echo golang upgraded from $CURRENT_VER to $CHECK_VER
+		echo
+	fi
+
 ) 200>update-bin.lock

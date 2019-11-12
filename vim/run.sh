@@ -1,4 +1,4 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
 SRC_DIR='/usr/local/src'
 
@@ -63,6 +63,12 @@ cd "$VIM_SRC_DIR"
 
 	if [ ! -e /usr/local/bin/vi ]; then
 		sudo ln -s /usr/local/bin/vim /usr/local/bin/vi
+	fi
+
+	if [ -n "$PREV_VER" ]; then
+		echo
+		echo VIM upgraded from $PREV_VER to $VER
+		echo
 	fi
 
 ) 200>$LOCK_FILE
