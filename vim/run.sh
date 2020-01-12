@@ -55,7 +55,19 @@ cd "$VIM_SRC_DIR"
 	make distclean 2>&1 || :
 	rm auto/config.cache 2>&1 || :
 	make clean 2>&1 || :
-	./configure --enable-pythoninterp=yes --enable-python3interp=yes
+
+	if [ -n "$DISPLAY" ]; then
+		./configure \
+			--enable-pythoninterp=yes \
+			--enable-python3interp=yes \
+			--enable-gnome-check \
+			--with-x
+	else
+		./configure \
+			--enable-pythoninterp=yes \
+			--enable-python3interp=yes
+	fi
+
 	make
 	sudo make install
 

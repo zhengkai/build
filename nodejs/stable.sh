@@ -8,9 +8,10 @@ fi
 INSTALL_DIR='/usr/local/'
 SRC_DIR='/usr/local/src/'
 
-SCRIPT_DIR="$( cd "`dirname "$0"`" && pwd )"
-LOCK_FILE="${SCRIPT_DIR}/update.lock"
-VER_FILE="${SCRIPT_DIR}/ver.txt"
+DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
+
+LOCK_FILE="${DIR}/update.lock"
+VER_FILE="${DIR}/ver.txt"
 
 VER=`curl -s https://nodejs.org/en/ | grep -Po "Download \d+\.\d+(\.\d+)? ${VER_CHOOSE}" | cut -d ' ' -f 2`
 
@@ -65,6 +66,8 @@ echo $URL
 	if [ ! -e "${INSTALL_DIR}bin/nodejs" ]; then
 		sudo ln -s "${INSTALL_DIR}bin/node" "${INSTALL_DIR}bin/nodejs"
 	fi
+
+	"$DIR/acl.sh"
 
 	echo "$VER" > "$VER_FILE"
 
