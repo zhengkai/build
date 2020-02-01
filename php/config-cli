@@ -12,10 +12,9 @@
 '--disable-all' \
 '--disable-cgi' \
 '--disable-fpm' \
-'--with-pear' \
 '--enable-huge-code-pages' \
 '--enable-cli' \
-'--enable-libxml' \
+'--with-libxml' \
 '--enable-filter' \
 '--enable-bcmath=shared' \
 '--enable-calendar=shared' \
