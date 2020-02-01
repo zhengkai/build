@@ -58,13 +58,11 @@ cd "$VIM_SRC_DIR"
 
 	if [ -n "$DISPLAY" ]; then
 		./configure \
-			--enable-pythoninterp=yes \
 			--enable-python3interp=yes \
 			--enable-gnome-check \
 			--with-x
 	else
 		./configure \
-			--enable-pythoninterp=yes \
 			--enable-python3interp=yes
 	fi
 
