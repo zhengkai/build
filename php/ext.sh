@@ -7,8 +7,8 @@ EXT=(
 	'grpc      1.26.0'
 	'libsodium 2.0.22'
 	'memcached 3.1.5'
-	'mongodb   1.6.1'
 	'msgpack   2.0.3'
+	'mongodb   1.6.1'
 	'protobuf  3.11.2'
 	'redis     5.1.1'
 	'xdebug    2.9.2'
@@ -64,6 +64,11 @@ build_event() {
 
 build_geoip() {
 	sudo apt-get install -y libgeoip-dev
+	build_common
+}
+
+build_mysql_xdevapi() {
+	sudo apt-get install -y libprotobuf-dev libboost-dev openssl protobuf-compiler
 	build_common
 }
 

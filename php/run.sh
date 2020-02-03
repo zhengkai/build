@@ -34,28 +34,29 @@ tar -xzf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
 
 sudo apt-get install -y --no-install-recommends \
 	autoconf \
+	bison \
+	bzip2 \
 	file \
 	g++ \
 	gcc \
-	libc6-dev \
-	make \
-	pkg-config \
-	bison \
-	re2c \
-	bzip2 \
 	libacl1-dev \
 	libbz2-dev \
+	libc6-dev \
 	libcurl4-openssl-dev \
 	libgmp-dev \
+	libmagic-dev \
 	libmhash-dev \
 	libpng-dev \
 	libreadline6-dev \
-	librecode-dev \
 	libssl-dev \
 	libsystemd-dev \
 	libtidy-dev \
 	libxml2-dev \
-	libxslt1-dev
+	libxslt1-dev \
+	make \
+	pkg-config \
+	re2c \
+	libzip-dev
 
 if [ ! -e /usr/include/gmp.h ]; then
 	sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h

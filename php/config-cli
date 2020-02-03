@@ -21,14 +21,11 @@
 '--enable-ctype=shared' \
 '--enable-dom=shared' \
 '--enable-fileinfo=shared' \
-'--enable-hash=shared' \
 '--enable-intl=shared' \
 '--enable-json=shared' \
-'--enable-mbregex-backtrack' \
 '--enable-mbregex=shared' \
 '--enable-mbstring=shared' \
 '--enable-mysqlnd=shared' \
-'--enable-opcache-file' \
 '--enable-opcache=shared' \
 '--enable-pcntl=shared' \
 '--enable-pdo=shared' \
@@ -43,8 +40,8 @@
 '--enable-tokenizer=shared' \
 '--enable-xml=shared' \
 '--enable-xmlwriter=shared' \
-'--enable-zip=shared' \
-'--with-gd=shared' \
+'--enable-gd=shared' \
+'--with-zip=shared' \
 '--with-bz2=shared' \
 '--with-curl=shared' \
 '--with-gettext=shared' \
@@ -56,7 +53,6 @@
 '--with-openssl=shared' \
 '--with-pdo-mysql=shared' \
 '--with-readline=shared' \
-'--with-recode=shared' \
 '--with-system-ciphers' \
 '--with-tidy=shared' \
 '--with-xmlrpc=shared' \
