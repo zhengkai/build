@@ -51,6 +51,13 @@ fi
 	fi
 	sudo tar -C /usr/local -xzf "$GOBIN_FILE"
 
+	if [ ! -e /usr/local/bin/go ]; then
+		sudo ln -s /usr/local/go/bin/go /usr/local/bin/ || :
+	fi
+	if [ ! -e /usr/local/bin/gofmt ]; then
+		sudo ln -s /usr/local/go/bin/gofmt /usr/local/bin/ || :
+	fi
+
 	/usr/local/go/bin/go version
 	echo "$CHECK_VER" > "$VER_FILE"
 
