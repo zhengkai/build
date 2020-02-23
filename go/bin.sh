@@ -3,7 +3,7 @@
 GO_SITE='https://dl.google.com/go/'
 #GO_SITE='https://mirrors.ustc.edu.cn/golang/'
 
-DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
+DIR=$(readlink -f "$0") && DIR=$(dirname "$DIR") && cd "$DIR" || exit 1
 
 if [ -e /usr/local/go/bin/go ]; then
 	/usr/local/go/bin/go version || :

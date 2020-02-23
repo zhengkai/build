@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 CODENAME=`lsb_release -c -s`
 
@@ -18,10 +18,9 @@ SOURCE='source.list'
 
 echo "deb [arch=${ARCH}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx" > "$SOURCE"
 echo "deb-src [arch=${ARCH}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx" >> "$SOURCE"
-
 cat "$SOURCE"
-
 sudo cp "$SOURCE" /etc/apt/sources.list.d/nginx.list
+
 sudo apt-key add nginx-signing.key
 sudo apt update
 sudo apt install -y nginx
