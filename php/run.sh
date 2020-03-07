@@ -23,7 +23,7 @@ fi
 
 PHP_SRC_FILE=$SRC_DIR'/php-'$PHP_VER'.tar.gz'
 if [ ! -e $PHP_SRC_FILE ]; then
-	wget 'http://jp.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
+	wget 'http://cn.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
 fi
 
 echo "$SHA256SUM  $PHP_SRC_FILE" | sha256sum -c
