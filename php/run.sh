@@ -14,23 +14,23 @@ if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
 	exit 1
 fi
 
-cd $SRC_DIR
+cd "$SRC_DIR"
 
 if [ "$('pwd')" != $SRC_DIR ]; then
-	>&2 echo 'fail to cd '$PHP_SRC_DIR
+	>&2 echo "fail to cd $PHP_SRC_DIR"
 	exit 1
 fi
 
-PHP_SRC_FILE=$SRC_DIR'/php-'$PHP_VER'.tar.gz'
+PHP_SRC_FILE="${SRC_DIR}/php-${PHP_VER}.tar.gz"
 if [ ! -e $PHP_SRC_FILE ]; then
-	wget 'http://cn.php.net/get/php-'$PHP_VER'.tar.gz/from/this/mirror' -O $PHP_SRC_FILE
+	wget "https://www.php.net/distributions/php-${PHP_VER}.tar.gz" -O "$PHP_SRC_FILE"
 fi
 
 echo "$SHA256SUM  $PHP_SRC_FILE" | sha256sum -c
 
-mkdir -p $PHP_SRC_DIR
+mkdir -p "$PHP_SRC_DIR"
 
-tar -xzf $PHP_SRC_FILE -C $PHP_SRC_DIR --strip-components=1
+tar -xzf "$PHP_SRC_FILE" -C "$PHP_SRC_DIR" --strip-components=1
 
 sudo apt-get install -y --no-install-recommends \
 	autoconf \
@@ -71,7 +71,7 @@ sudo cp -R etc/* /etc/php/
 cp config-fpm $PHP_SRC_DIR
 cp config-cli $PHP_SRC_DIR
 
-PROCESSOR="`grep -c '^processor' /proc/cpuinfo`"
+PROCESSOR=$(grep -c '^processor' /proc/cpuinfo)
 
 cd $PHP_SRC_DIR
 make clean 2>&1 || :
@@ -90,10 +90,10 @@ sudo make install
 
 "${DIR}/ext.sh"
 
-if [ ! -e '/usr/lib/php/doc/pman' ]; then
-	sudo pear channel-update doc.php.net
-	sudo pear install doc.php.net/pman
-fi
+#if [ ! -e '/usr/lib/php/doc/pman' ]; then
+#	sudo pear channel-update doc.php.net
+#	sudo pear install doc.php.net/pman
+#fi
 BASHCOMP_DIR='/etc/bash_completion.d'
 if [ -d $BASHCOMP_DIR ] && [ ! -e "$BASHCOMP_DIR/pman" ]; then
 	sudo cp "${DIR}/pman" $BASHCOMP_DIR
