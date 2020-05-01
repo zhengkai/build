@@ -1,8 +1,8 @@
 #! /bin/bash -e
 
-CODENAME=`lsb_release -c -s`
+CODENAME=$(lsb_release -c -s)
 
-ARCH=`arch`
+ARCH=$(arch)
 if [ "$ARCH" == 'x86_64' ]; then
 	ARCH='amd64'
 elif [ "$ARCH" == 'aarch64' ]; then
@@ -12,7 +12,7 @@ else
 	exit
 fi
 
-cd $(dirname `readlink -f $0`)
+DIR=$(readlink -f "$0") && DIR=$(dirname "$DIR") && cd "$DIR" || exit 1
 
 SOURCE='source.list'
 
@@ -26,9 +26,9 @@ sudo apt update
 sudo apt install -y nginx
 
 if [ -e '/etc/nginx/fastcgi_params' ]; then
-	check_param=`grep 'SCRIPT_FILENAME' /etc/nginx/fastcgi_params`
+	check_param=$(grep 'SCRIPT_FILENAME' /etc/nginx/fastcgi_params || :)
 	if [ -z "$check_param" ]; then
-		echo -e "\n"'fastcgi_param  SCRIPT_FILENAME    $request_filename;' | sudo tee -a /etc/nginx/fastcgi_params
+		echo -e "\nfastcgi_param  SCRIPT_FILENAME    \$request_filename;" | sudo tee -a /etc/nginx/fastcgi_params
 	fi
 fi
 
