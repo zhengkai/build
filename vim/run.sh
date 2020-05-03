@@ -48,7 +48,7 @@ cd "$VIM_SRC_DIR"
 	if [ -z "$PREV_VER" ]; then
 		sudo apt-get install -y --no-install-recommends \
 			build-essential \
-			libncurses5-dev
+			libncurses-dev
 	fi
 
 	cd src

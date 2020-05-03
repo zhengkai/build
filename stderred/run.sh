@@ -1,5 +1,10 @@
 #!/bin/bash -e
 
+FILE="/usr/local/lib/libstderred.so"
+if [ -f "$FILE" ]; then
+	exit
+fi
+
 cd /usr/local/src
 
 if [ ! -d stderred ]; then
@@ -18,4 +23,4 @@ if [ ! -f "$SO" ]; then
 fi
 
 strip "$SO"
-sudo cp "$SO" /usr/local/lib/libstderred.so
+sudo cp "$SO" "$FILE"
