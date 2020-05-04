@@ -9,6 +9,16 @@ if [ -e /usr/local/go/bin/go ]; then
 	/usr/local/go/bin/go version || :
 fi
 
+ARCH=$(arch)
+if [ "$ARCH" == 'x86_64' ]; then
+	ARCH='amd64'
+elif [ "$ARCH" == 'aarch64' ]; then
+	ARCH='arm64'
+else
+	>&2 echo unknown arch $ARCH
+	exit
+fi
+
 (
 	flock -x -n 200 || exit 1
 
@@ -21,22 +31,12 @@ fi
 	CURRENT_VER=''
 	VER_FILE='ver.txt'
 	if [ -f "$VER_FILE" ]; then
-		CURRENT_VER=`cat ver.txt`
+		CURRENT_VER=$(cat ver.txt)
 	fi
 	if [ "$CURRENT_VER" == "$CHECK_VER" ]; then
 		echo
 		echo "newest version '$CHECK_VER', no need update"
 		echo
-		exit
-	fi
-
-	ARCH=`arch`
-	if [ "$ARCH" == 'x86_64' ]; then
-		ARCH='amd64'
-	elif [ "$ARCH" == 'aarch64' ]; then
-		ARCH='arm64'
-	else
-		>&2 echo unknown arch $ARCH
 		exit
 	fi
 
@@ -63,7 +63,7 @@ fi
 
 	if [ -n "$CURRENT_VER" ]; then
 		echo
-		echo golang upgraded from $CURRENT_VER to $CHECK_VER
+		echo "golang upgraded from $CURRENT_VER to $CHECK_VER"
 		echo
 	fi
 
