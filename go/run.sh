@@ -3,7 +3,7 @@
 GO_SITE='https://dl.google.com/go/'
 #GO_SITE='https://mirrors.ustc.edu.cn/golang/'
 
-DIR=$(readlink -f "$0") && DIR=$(dirname "$DIR") && cd "$DIR" || exit 1
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
 if [ -e /usr/local/go/bin/go ]; then
 	/usr/local/go/bin/go version || :
@@ -12,7 +12,7 @@ fi
 (
 	flock -x -n 200 || exit 1
 
-	CHECK_VER=`./get-ver.sh`
+	CHECK_VER=$(./get-ver.sh)
 	if [ -z "$CHECK_VER" ]; then
 		>&2 echo 'can not detect go version'
 		exit 1
