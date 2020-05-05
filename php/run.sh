@@ -1,4 +1,4 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
 PHP_VER='7.4.2'
 
@@ -9,15 +9,9 @@ PHP_SRC_DIR=$SRC_DIR'/php-'$PHP_VER
 
 DIR="$(dirname "$(readlink -f "$0")")" && cd "$DIR" || exit 1
 
-if [ ! -d $SRC_DIR ] || [ ! -w $SRC_DIR ]; then
-	>&2 echo 'no dir '$PHP_SRC_DIR
-	exit 1
-fi
-
-cd "$SRC_DIR"
-
-if [ "$('pwd')" != $SRC_DIR ]; then
-	>&2 echo "fail to cd $PHP_SRC_DIR"
+cd "$SRC_DIR" || exit 1
+if [ ! -w "$SRC_DIR" ]; then
+	>&2 echo "dir $SRC_DIR can not write"
 	exit 1
 fi
 
