@@ -4,7 +4,7 @@ SRC_DIR='/usr/local/src'
 
 VIM_SRC_DIR="${SRC_DIR}/vim"
 
-DIR=`readlink -f "$0"` && DIR=`dirname "$DIR"` && cd "$DIR" || exit 1
+DIR="$(dirname "$(readlink -f "$0")")" && cd "$DIR" || exit 1
 
 LOCK_FILE="${DIR}/update.lock"
 VER_FILE="${DIR}/ver.txt"
