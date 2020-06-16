@@ -2,7 +2,7 @@
 
 VER="v0.4.3"
 
-sudo apt-get install cargo cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
+sudo apt-get install -y cargo cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
 
 cd /usr/local/src
 
@@ -14,7 +14,7 @@ cd alacritty
 
 git clean -df
 git reset --hard
-git co master
+git checkout master
 git pull --rebase
 git checkout "$VER"
 

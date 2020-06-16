@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-VER="3.12.1"
+VER="3.12.3"
 
 ARCH=$(arch)
 if [ "$ARCH" == 'x86_64' ]; then

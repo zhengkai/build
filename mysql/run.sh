@@ -36,11 +36,11 @@ PASSWORD=$(pwgen -cns 15)
 sed "s/^password=\$/password=${PASSWORD}/g" ./templet.cnf > "$MY_CNF"
 chmod 600 "$MY_CNF"
 
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $PASSWORD"
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PASSWORD"
-sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password $PASSWORD"
-sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password $PASSWORD"
-sudo debconf-set-selections <<< "mysql-community-server mysql-server/default-auth-override select Use Strong Password Encryption (RECOMMENDED)"
+#sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $PASSWORD"
+#sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PASSWORD"
+#sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password $PASSWORD"
+#sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password $PASSWORD"
+#sudo debconf-set-selections <<< "mysql-community-server mysql-server/default-auth-override select Use Strong Password Encryption (RECOMMENDED)"
 
 # https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-repo-manual-setup
 
@@ -55,6 +55,6 @@ sudo cp "$SOURCE" /etc/apt/sources.list.d/mysql.list
 
 sudo apt update
 
-sudo apt install -y mysql-server
+sudo apt install -y mysql-community-client mysql-community-server
 
 # sudo apt install libmysqlclient-dev
