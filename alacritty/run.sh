@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-VER="v0.4.2"
+VER="v0.4.3"
 
 sudo apt-get install cargo cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
 
@@ -14,8 +14,9 @@ cd alacritty
 
 git clean -df
 git reset --hard
+git co master
+git pull --rebase
 git checkout "$VER"
-git pull
 
 cargo build --release
 
