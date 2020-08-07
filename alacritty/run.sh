@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-VER="v0.4.3"
+VER="v0.5.0"
 
 sudo apt-get install -y cargo cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
 
