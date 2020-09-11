@@ -16,7 +16,7 @@ fi
 
 cd $SRC_DIR
 if [ ! -e "$VIM_SRC_DIR" ]; then
-	git clone --depth=10 https://github.com/zhengkai/vimrc.git "$VIM_SRC_DIR"
+	git clone --depth=10 https://github.com/vim/vim.git "$VIM_SRC_DIR"
 fi
 
 cd "$VIM_SRC_DIR"
