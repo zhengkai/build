@@ -7,7 +7,7 @@ sudo apt-get install -y cargo cmake pkg-config libfreetype6-dev libfontconfig1-d
 cd /usr/local/src
 
 if [ ! -d alacritty ]; then
-	git clone git@github.com:alacritty/alacritty.git
+	git clone https://github.com/alacritty/alacritty.git
 fi
 
 cd alacritty
