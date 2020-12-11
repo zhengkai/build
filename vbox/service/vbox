@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 VMUSER=zhengkai
-VMNAME="Shiva"
+VMNAME="Talon"
 
 case "$1" in
   start)
