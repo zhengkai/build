@@ -11,9 +11,8 @@ fi
 
 cd kitty
 
-git pull --rebase
-
 make clean || :
+git pull --rebase
 make
 
 sudo cp ./kitty/launcher/kitty /usr/local/bin
