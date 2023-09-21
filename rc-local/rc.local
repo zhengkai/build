@@ -1,0 +1,5 @@
+#!/bin/bash -e
+#
+# rc.local
+
+exit 0

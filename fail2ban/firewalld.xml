@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>ss</short>
+  <description>shadowsocks</description>
+  <port protocol="tcp" port="6114"/>
+  <port protocol="udp" port="6114"/>
+</service>

@@ -1,0 +1,6 @@
+export GOROOT=/usr/local/src/go
+export GOARCH=amd64
+export GOOS=linux
+export GOPATH=/go
+
+export PATH="$GOPATH/bin:$GOROOT/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/games:$HOME/.composer/vendor/bin"

@@ -1,0 +1,3 @@
+ssl_session_tickets on;
+ssl_session_ticket_key ssl.d/session-ticket-current.key;
+ssl_session_ticket_key ssl.d/session-ticket-prev.key;

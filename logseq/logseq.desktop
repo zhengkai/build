@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Logseq
+Exec=/home/zhengkai/.logseq/Logseq-linux-x64.AppImage
+Icon=/home/zhengkai/.logseq/logo.png
+Type=Application
+StartupNotify=true

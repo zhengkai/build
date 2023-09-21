@@ -1,0 +1,73 @@
+#! /bin/bash
+
+### BEGIN INIT INFO
+# Provides:          ss-server
+# Required-Start:    $network $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+NAME='ss-server'
+SSUSER='shadowsocks'
+PID_FILE="/var/run/$NAME.pid"
+CONFIG_FILE='/etc/shadowsocks.json'
+
+OUT_IF='eth0'
+
+do_start () {
+	if [ ! -e $CONFIG_FILE ]; then
+		>&2 echo 'no config file '$CONFIG_FILE
+		exit 1
+	fi
+	touch $PID_FILE
+	chown $SSUSER $PID_FILE
+	ulimit -n 51200
+
+	# forbidden localhost network access
+	sudo iptables -D OUTPUT ! -o $OUT_IF -m owner --uid-owner $SSUSER \
+	    -j REJECT --reject-with icmp-host-prohibited || :
+	sudo iptables -A OUTPUT ! -o $OUT_IF -m owner --uid-owner $SSUSER \
+	    -j REJECT --reject-with icmp-host-prohibited
+
+	sudo -u $SSUSER "/usr/local/bin/$NAME" \
+		--reuse-port \
+		--fast-open \
+		--mptcp \
+		-c $CONFIG_FILE \
+		-f $PID_FILE
+}
+
+do_stop () {
+	PID=`cat $PID_FILE`
+	if [ "$PID" -le 0 ]; then
+		>&2 echo 'pid not found'
+		exit 1
+	fi
+	sudo -u $SSUSER kill $PID
+}
+
+case "$1" in
+	start)
+		echo 'start '$NAME
+		do_start
+		;;
+	stop)
+		echo 'stop '$NAME
+		do_stop
+		;;
+	restart)
+		echo 'restart '$NAME
+		do_stop || :
+		echo 'start'
+		do_start
+		;;
+	*)
+		>&2 echo "Usage: /etc/init.d/$NAME {start|stop|restart}"
+		exit 1
+		;;
+esac
+
+exit 0
