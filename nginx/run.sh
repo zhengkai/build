@@ -23,7 +23,7 @@ echo "deb-src [arch=${ARCH} signed-by=${GPG_FILE}] http://nginx.org/packages/ubu
 cat "$SOURCE"
 sudo cp "$SOURCE" /etc/apt/sources.list.d/nginx.list
 
-if [ ! -e /usr/share/keyrings/nginx.gpg ]; then
+if [ ! -e "$GPG_FILE" ]; then
 	curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee "$GPG_FILE" >/dev/null
 fi
 sudo apt update
