@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-VER="0.30.0"
+VER="0.30.1"
 
 mkdir -p /usr/local/src/kitty-bin
 cd /usr/local/src/kitty-bin
@@ -21,3 +21,8 @@ if [ ! -e bin/kitty ] || [ ! -e share/man/man5/kitty.conf.5 ]; then
 fi
 
 sudo rsync --partial -vzrtopg share /usr/local/
+
+DIR="$(pwd)"
+
+sudo ln -s "${DIR}/bin/kitty" /usr/local/bin
+sudo ln -s "${DIR}/bin/kitten" /usr/local/bin
