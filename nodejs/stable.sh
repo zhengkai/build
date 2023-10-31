@@ -17,11 +17,12 @@ DIR="$(dirname "$(readlink -f "$0")")" && cd "$DIR" || exit 1
 LOCK_FILE="${DIR}/update.lock"
 VER_FILE="${DIR}/ver.txt"
 
-VER=$(curl -s https://nodejs.org/en/ | grep -Po "Download \d+\.\d+(\.\d+)? ${VER_CHOOSE}" | cut -d ' ' -f 2)
+VER=$(curl -s https://nodejs.org/en/ | grep -Po "\"\d+\.\d+(\.\d+)? ${VER_CHOOSE}\"" | head -n 1 | awk '{print $1}')
 if [ -z "$VER" ]; then
 	>&2 echo 'cannot detect version'
 	exit 1
 fi
+VER="${VER#\"}"
 
 ARCH=$(arch)
 if [ "$ARCH" == 'x86_64' ]; then
