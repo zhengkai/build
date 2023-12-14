@@ -1,6 +1,9 @@
 #!/bin/bash -ex
 
-VER="0.7.8"
+VER=$(curl "https://api.github.com/repos/logseq/logseq/releases/latest" | jq -r .tag_name)
+if ! [[ $VER =~ ^[0-9.]+$ ]]; then
+	>&2 echo 'get version failed'
+fi
 
 DIR="$(dirname "$(readlink -f "$0")")" && cd "$DIR" || exit 1
 
@@ -11,7 +14,7 @@ mkdir -p "$APP_DIR"
 URL="https://github.com/logseq/logseq/releases/download/${VER}/Logseq-linux-x64-${VER}.AppImage"
 IMG="${APP_DIR}/Logseq-linux-x64.AppImage"
 
-echo curl "$URL" --output "$IMG"
+curl "$URL" --output "$IMG"
 sudo chmod +x "$IMG"
 
 sudo cp "${DIR}/logseq.desktop" /usr/share/applications/
