@@ -2,6 +2,8 @@
 
 GPG_FILE="/usr/share/keyrings/nginx.gpg"
 
+REPO_URL="http://nginx.org/packages/ubuntu/ "
+
 CODENAME=$(lsb_release -c -s)
 
 ARCH=$(arch)
@@ -14,18 +16,21 @@ else
 	exit
 fi
 
-DIR=$(readlink -f "$0") && DIR=$(dirname "$DIR") && cd "$DIR" || exit 1
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
+
+if [ ! -e "$GPG_FILE" ]; then
+	sudo cp nginx.gpg "$GPG_FILE"
+fi
 
 SOURCE='source.list'
 
-echo "deb [arch=${ARCH} signed-by=${GPG_FILE}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx" > "$SOURCE"
-echo "deb-src [arch=${ARCH} signed-by=${GPG_FILE}] http://nginx.org/packages/ubuntu/ ${CODENAME} nginx" >> "$SOURCE"
+REPO="[arch=${ARCH} signed-by=${GPG_FILE}] $REPO_URL $CODENAME nginx"
+
+echo "deb $REPO" > "$SOURCE"
+echo "deb-src $REPO" >> "$SOURCE"
 cat "$SOURCE"
 sudo cp "$SOURCE" /etc/apt/sources.list.d/nginx.list
 
-if [ ! -e "$GPG_FILE" ]; then
-	curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee "$GPG_FILE" >/dev/null
-fi
 sudo apt update
 sudo apt install -y nginx
 
