@@ -17,3 +17,19 @@ ulimit 限制 http://serverfault.com/a/815837/183566
 	mysql_secure_installation
 
 之前会产生临时密码，用这个命令转为正式
+
+-----------------
+
+## MySQL GPG 文件更新
+
+从 <https://dev.mysql.com/doc/refman/8.0/en/checking-gpg-signature.html> 拷贝，或者
+
+    gpg --keyserver pgpkeys.mit.edu --recv-key B7B3B788A8D3785C
+
+导出成二进制 `.gpg` 文件
+
+    gpg --export B7B3B788A8D3785C
+
+导出成文本 `.asc` 文件
+
+    gpg -a --export B7B3B788A8D3785C 
