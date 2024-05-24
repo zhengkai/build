@@ -14,7 +14,10 @@
 /imagemagick/ver.txt
 /imagemagick/update.lock
 /nodejs/ver.txt
+/nodejs/ver/
 /nodejs/update.lock
+/nodejs/update-ver.lock
+/nodejs/update-bin.lock
 /openssl/ver.txt
 /openssl/update.lock
 /gitflow/gitflow/
