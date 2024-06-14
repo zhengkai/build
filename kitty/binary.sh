@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-VER="0.30.1"
+VER="0.34.1"
 
 mkdir -p /usr/local/src/kitty-bin
 cd /usr/local/src/kitty-bin
