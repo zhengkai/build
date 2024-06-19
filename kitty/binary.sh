@@ -1,6 +1,11 @@
 #!/bin/bash -ex
 
-VER="0.34.1"
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
+
+./get-ver.sh
+
+VER="$(cat ver/current.txt || :)"
+VER="${VER:-0.35.1}"
 
 mkdir -p /usr/local/src/kitty-bin
 cd /usr/local/src/kitty-bin
@@ -24,5 +29,5 @@ sudo rsync --partial -vzrtopg share /usr/local/
 
 DIR="$(pwd)"
 
-sudo ln -s "${DIR}/bin/kitty" /usr/local/bin
-sudo ln -s "${DIR}/bin/kitten" /usr/local/bin
+sudo ln -sf "${DIR}/bin/kitty" /usr/local/bin
+sudo ln -sf "${DIR}/bin/kitten" /usr/local/bin
