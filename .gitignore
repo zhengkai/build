@@ -6,6 +6,7 @@
 /vim/update.lock
 /nvim/ver.txt
 /nvim/release.json
+/mysql/source.list
 /watchman/ver.txt
 /watchman/update.lock
 /shadowsocks/ver.txt

@@ -1,9 +1,16 @@
 #!/bin/bash -e
 
-PACKER="${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim"
-if [ ! -d "$PACKER" ]; then
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim.git "$PACKER"
+LAZY="${HOME}/.local/share/nvim/lazy/lazy.nvim"
+if [ ! -d "$LAZY" ]; then
+    git clone \
+		--filter=blob:none \
+		--depth 1 \
+		--branch=stable \
+		https://github.com/folke/lazy.nvim.git "$LAZY" \
+		|| exit 1
 fi
+
+sudo apt install luarocks
 
 ARCH=$(arch)
 if [ "$ARCH" != "x86_64" ]; then
