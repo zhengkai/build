@@ -12,11 +12,11 @@ fi
 
 echo "$LOCAL done"
 
-COPILOT="${LOCAL}/pack/github/start/copilot.vim"
-if [ -d "$COPILOT" ]; then
-	(cd "$COPILOT" && git pull)
-else
-	git clone --depth 1 https://github.com/github/copilot.vim.git "$COPILOT"
+if command -v npm &>/dev/null; then
+	npm i -g bash-language-server
+	npm i -g typescript
 fi
 
-echo "$COPILOT done"
+if command -v go &>/dev/null; then
+	go install github.com/mattn/efm-langserver@latest
+fi

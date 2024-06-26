@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VER="1.31.0"
+VER="1.34.2"
 
 go install "google.golang.org/protobuf/cmd/protoc-gen-go@v${VER}"
 
