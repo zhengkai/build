@@ -24,3 +24,6 @@ sudo cp oracle_vbox_2016.gpg "$GPG_TARGET"
 FILE='/etc/apt/sources.list.d/vbox.list'
 echo "deb [arch=${ARCH} signed-by=${GPG_TARGET}] https://download.virtualbox.org/virtualbox/debian ${CODENAME} contrib" \
 	| sudo tee "$FILE"
+
+sudo apt update
+sudo apt install -y virtualbox

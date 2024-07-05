@@ -10,6 +10,11 @@ if [ ! -d "$LAZY" ]; then
 		|| exit 1
 fi
 
+PACKER="${HOME}/.local/share/nvim/site/pack/packer"
+if [ -e "$PACKER" ]; then
+	rm -rf "$PACKER"
+fi
+
 sudo apt install luarocks
 
 ARCH=$(arch)
