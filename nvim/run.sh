@@ -15,7 +15,7 @@ if [ -e "$PACKER" ]; then
 	rm -rf "$PACKER"
 fi
 
-sudo apt install luarocks
+sudo apt install -y luarocks
 
 ARCH=$(arch)
 if [ "$ARCH" != "x86_64" ]; then
