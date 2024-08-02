@@ -45,3 +45,9 @@ sudo mkdir -p /etc/nginx/ssl.d
 sudo mkdir -p /etc/nginx/vhost.d
 
 sudo cp nginx.conf /etc/nginx/
+
+if id nginx &>/dev/null; then
+	if getent group www-data &>/dev/null; then
+		sudo adduser nginx www-data || :
+	fi
+fi
