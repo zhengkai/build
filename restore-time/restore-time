@@ -1,0 +1,26 @@
+#!/bin/bash
+
+TS_FILE="/var/lib/last-timestamp.txt"
+TZ="Asia/Shanghai"
+
+function showTime() {
+	date -d @"$1" "+%Y-%m-%d %H:%M:%S"
+}
+
+if [ -f "$TS_FILE" ]; then
+    LAST_TS=$(cat "$TS_FILE")
+    CURRENT_TS=$(date +%s)
+	if [ "$LAST_TS" -gt "$CURRENT_TS" ]; then
+		echo date -s @"$LAST_TS"
+		echo "last time: $(showTime "$LAST_TS"), current time: $(showTime "$CURRENT_TS"), changed to last time"
+		exit
+	fi
+fi
+
+CURRENT_TS=$(date +%s)
+if [ "$CURRENT_TS" -lt 1729698548 ]; then
+	exit
+fi
+
+TS=$(date +%s | sudo tee "$TS_FILE")
+echo "save time $(showTime "$TS")"

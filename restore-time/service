@@ -1,0 +1,12 @@
+[Unit]
+Description=Restore time
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/restore-time
+RemainAfterExit=yes
+ExecStop=/usr/local/bin/restore-time
+
+[Install]
+WantedBy=multi-user.target
