@@ -1,0 +1,1 @@
+17	*	*	root	/usr/local/bin/restore-time >/log/crontab-restore-time 2>&1
