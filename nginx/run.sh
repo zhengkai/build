@@ -4,7 +4,7 @@ GPG_FILE="/usr/share/keyrings/nginx.gpg"
 
 REPO_URL="http://nginx.org/packages/ubuntu/ "
 
-CODENAME=$(lsb_release -c -s)
+CODENAME=$(lsb_release -c -s 2>/dev/null)
 
 ARCH=$(arch)
 if [ "$ARCH" == 'x86_64' ]; then
@@ -12,7 +12,7 @@ if [ "$ARCH" == 'x86_64' ]; then
 elif [ "$ARCH" == 'aarch64' ]; then
 	ARCH='arm64'
 else
-	>&2 echo unknown arch $ARCH
+	>&2 echo "unknown arch $ARCH"
 	exit
 fi
 
