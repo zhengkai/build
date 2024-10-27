@@ -8,5 +8,5 @@ npm i -g bash-language-server
 
 go install github.com/mattn/efm-langserver@latest
 
-:CocInstall coc-eslint
-:CocInstall coc-tsserver
+nvim --headless -c "CocInstall coc-eslint" -c "qa" || :
+nvim --headless -c "CocInstall coc-tsserver" -c "qa" || :
