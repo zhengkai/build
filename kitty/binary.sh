@@ -1,16 +1,26 @@
 #!/bin/bash -ex
 
+ARCH=$(arch)
+if [ "$ARCH" == 'x86_64' ]; then
+	ARCH='amd64'
+elif [ "$ARCH" == 'aarch64' ]; then
+	ARCH='arm64'
+else
+	>&2 echo "unknown arch $ARCH"
+	exit
+fi
+
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
 ./get-ver.sh
 
 VER="$(cat ver/current.txt || :)"
-VER="${VER:-0.35.1}"
+VER="${VER:-0.36.4}"
 
 mkdir -p /usr/local/src/kitty-bin
 cd /usr/local/src/kitty-bin
 
-FILE="kitty-${VER}-x86_64.txz"
+FILE="kitty-${VER}-${ARCH}.txz"
 
 if [ ! -e "$FILE" ]; then
 	wget "https://github.com/kovidgoyal/kitty/releases/download/v${VER}/${FILE}" \
