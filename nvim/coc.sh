@@ -10,3 +10,7 @@ go install github.com/mattn/efm-langserver@latest
 
 nvim --headless -c "CocInstall coc-eslint" -c "qa" || :
 nvim --headless -c "CocInstall coc-tsserver" -c "qa" || :
+
+if [ -w /go/tmp ]; then
+	nvim --headless -c "GoInstallBinaries" -c "qa" || :
+fi
