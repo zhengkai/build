@@ -2,4 +2,10 @@
 
 NAME="shadowsocks"
 
-sudo adduser --disabled-password --comment "" "$NAME"
+sudo adduser -M \
+	--disabled-login \
+	--disabled-password \
+	--comment "" \
+	-s /usr/sbin/nologin \
+	-d /nonexistent \
+	"$NAME"
