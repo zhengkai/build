@@ -14,16 +14,13 @@ else
 	exit
 fi
 
-DIR=$(readlink -f "$0") && DIR=$(dirname "$DIR") && cd "$DIR" || exit 1
-
-SOURCE='source.list'
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
 GPG_FILE='/etc/apt/keyrings/docker.gpg'
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o "$GPG_FILE"
 
-echo "deb [arch=${ARCH} signed-by=${GPG_FILE}] https://download.docker.com/linux/ubuntu ${CODENAME} stable" > "$SOURCE"
-cat "$SOURCE"
-sudo cp "$SOURCE" /etc/apt/sources.list.d/docker.list
+echo "deb [arch=${ARCH} signed-by=${GPG_FILE}] https://download.docker.com/linux/ubuntu ${CODENAME} stable" \
+	| sudo tee /etc/apt/sources.list.d/docker.list
 
 sudo apt update
 sudo apt install -y \
