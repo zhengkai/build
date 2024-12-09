@@ -15,7 +15,7 @@ if [ "$ARCH" == 'x86_64' ]; then
 elif [ "$ARCH" == 'aarch64' ]; then
 	ARCH='arm64'
 else
-	>&2 echo unknown arch $ARCH
+	>&2 echo "unknown arch $ARCH"
 	exit
 fi
 
