@@ -3,7 +3,7 @@
 cd /usr/local/src
 
 if [ ! -d cmark-gfm ]; then
-	git clone https://github.com/github/cmark-gfm.git
+	git clone --depth 1 https://github.com/github/cmark-gfm.git
 fi
 cd cmark-gfm
 git pull

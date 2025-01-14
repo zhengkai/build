@@ -1,21 +1,13 @@
 #!/bin/bash -ex
 
-ARCH=$(arch)
-if [ "$ARCH" == 'x86_64' ]; then
-	ARCH='amd64'
-elif [ "$ARCH" == 'aarch64' ]; then
-	ARCH='arm64'
-else
-	>&2 echo "unknown arch $ARCH"
-	exit
-fi
+ARCH=$(dpkg --print-architecture)
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
-./get-ver.sh
+# ./get-ver.sh
 
-VER="$(cat ver/current.txt || :)"
-VER="${VER:-0.36.4}"
+# VER="$(cat ver/current.txt || :)"
+VER="${VER:-0.38.0}"
 
 mkdir -p /usr/local/src/kitty-bin
 cd /usr/local/src/kitty-bin
@@ -27,8 +19,11 @@ if [ ! -e "$FILE" ]; then
 		-O "$FILE"
 fi
 
-mkdir "$VER"
-cd "$VER"
+echo "$FILE"
+ls -al "$FILE"
+
+mkdir -p "v${VER}"
+cd "v${VER}"
 tar Jxvf "../${FILE}"
 
 if [ ! -e bin/kitty ] || [ ! -e share/man/man5/kitty.conf.5 ]; then
