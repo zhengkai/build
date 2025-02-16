@@ -20,7 +20,7 @@ sudo apt install -y luarocks
 ARCH=$(arch)
 if [ "$ARCH" == "aarch64" ]; then
 	ARCH="arm64"
-else
+elif [ "$ARCH" != "x86_64" ]; then
 	>&2 echo "uknown arch"
 	exit 1
 fi
