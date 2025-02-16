@@ -18,8 +18,10 @@ fi
 sudo apt install -y luarocks
 
 ARCH=$(arch)
-if [ "$ARCH" != "x86_64" ]; then
-	>&2 echo "x86 only"
+if [ "$ARCH" == "aarch64" ]; then
+	ARCH="arm64"
+else
+	>&2 echo "uknown arch"
 	exit 1
 fi
 
@@ -48,7 +50,7 @@ if [ "$CURRENT_VER" == "$CHECK_VER" ]; then
 fi
 
 SRC_DIR="/usr/local/src"
-URL="https://github.com/neovim/neovim/releases/download/${CHECK_VER}/nvim-linux64.tar.gz"
+URL="https://github.com/neovim/neovim/releases/download/${CHECK_VER}/nvim-linux-${ARCH}.tar.gz"
 FILE="${SRC_DIR}/nvim-linux64-${CHECK_VER}.tar.gz"
 
 TARGET="/usr/local"
@@ -62,7 +64,7 @@ curl "$URL" --output "$FILE"
 
 tar xzvf "$FILE"
 
-cd "${SRC_DIR}/nvim-linux64" || exit 1
+cd "${SRC_DIR}/nvim-linux-${ARCH}" || exit 1
 
 sudo cp -R "bin" "${TARGET}"
 sudo cp -R "lib" "${TARGET}"
@@ -76,4 +78,4 @@ if [ -n "$CURRENT_VER" ]; then
 	echo
 fi
 
-"${DIR}/config.sh"
+# "${DIR}/config.sh"
