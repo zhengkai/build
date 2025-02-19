@@ -12,11 +12,5 @@ fi
 
 echo "$LOCAL done"
 
-if command -v npm &>/dev/null; then
-	npm i -g bash-language-server
-	npm i -g typescript
-fi
-
-if command -v go &>/dev/null; then
-	go install github.com/mattn/efm-langserver@latest
-fi
+cd "$(dirname "$(readlink -f "$0")")" || exit 1
+./lsp.sh
