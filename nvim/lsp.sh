@@ -17,9 +17,6 @@ if [ ! -e /usr/local/lib/lua-ls ]; then
 fi
 
 if command -v go &>/dev/null; then
-	if [ ! -f /go/bin/efm-langserver ]; then
-		go install github.com/mattn/efm-langserver@latest
-	fi
 	if [ ! -f /go/bin/gopls ]; then
 		go install golang.org/x/tools/gopls@latest
 	fi
