@@ -60,13 +60,18 @@ cd "$SRC_DIR" || exit 1
 echo "$URL"
 echo "$FILE"
 
-curl "$URL" --output "$FILE"
+#curl "$URL" --output "$FILE"
 
 tar xzvf "$FILE"
 
 cd "${SRC_DIR}/nvim-linux-${ARCH}" || exit 1
 
-sudo cp -R "bin" "${TARGET}"
+VIM_BIN="${TARGET}/bin/nvim"
+if [ ! -f "$VIM_BIN" ]; then
+	sudo rm "$VIM_BIN" || :
+fi
+sudo cp "bin/nvim" "$VIM_BIN"
+
 sudo cp -R "lib" "${TARGET}"
 sudo cp -R "share" "${TARGET}"
 
