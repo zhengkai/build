@@ -1,13 +1,13 @@
 #!/bin/bash -ex
 
-ARCH=$(dpkg --print-architecture)
+ARCH=$(uname -m)
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
 # ./get-ver.sh
 
 # VER="$(cat ver/current.txt || :)"
-VER="${VER:-0.38.0}"
+VER="${VER:-0.40.1}"
 
 mkdir -p /usr/local/src/kitty-bin
 cd /usr/local/src/kitty-bin
