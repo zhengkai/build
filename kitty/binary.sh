@@ -1,6 +1,9 @@
 #!/bin/bash -ex
 
 ARCH=$(uname -m)
+if [ "$ARCH" == "aarch64" ]; then
+	ARCH="arm64"
+fi
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
