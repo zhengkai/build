@@ -43,8 +43,9 @@ sudo apt install -y nginx
 
 sudo mkdir -p /etc/nginx/ssl.d
 sudo mkdir -p /etc/nginx/vhost.d
+sudo mkdir -p /etc/nginx/conf.d
 
-sudo cp nginx.conf /etc/nginx/
+sudo cp base.conf /etc/nginx/conf.d/
 
 if id nginx &>/dev/null; then
 	if getent group www-data &>/dev/null; then
