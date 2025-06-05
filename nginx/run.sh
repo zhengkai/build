@@ -45,7 +45,7 @@ sudo mkdir -p /etc/nginx/ssl.d
 sudo mkdir -p /etc/nginx/vhost.d
 sudo mkdir -p /etc/nginx/conf.d
 
-sudo cp base.conf /etc/nginx/conf.d/
+sudo cp --update=none base.conf /etc/nginx/conf.d/
 
 if id nginx &>/dev/null; then
 	if getent group www-data &>/dev/null; then
