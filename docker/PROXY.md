@@ -13,7 +13,7 @@
 {
   "proxies": {
     "http-proxy": "http://proxy.example.com:3128",
-    "https-proxy": "https://proxy.example.com:3129",
+    "https-proxy": "http://proxy.example.com:3129",
     "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
   }
 }
@@ -24,20 +24,28 @@ service 配置文件 `/etc/systemd/system/docker.service.d/http-proxy.conf`：
 ```
 [Service]
 Environment="HTTP_PROXY=http://proxy.example.com:3128"
-Environment="HTTPS_PROXY=https://proxy.example.com:3129"
+Environment="HTTPS_PROXY=http://proxy.example.com:3129"
+```
+
+重启服务让配置生效：
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 ```
 
 # 容器内应用代理配置
 
 [官方文档](https://docs.docker.com/engine/cli/proxy/)
 
+配置文件 `/root/.docker/config.json`
 
 ```
 {
  "proxies": {
    "default": {
      "httpProxy": "http://proxy.example.com:3128",
-     "httpsProxy": "https://proxy.example.com:3129",
+     "httpsProxy": "http://proxy.example.com:3129",
      "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
    }
  }
