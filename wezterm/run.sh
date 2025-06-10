@@ -2,9 +2,17 @@
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
-if [ ! -e gpg.key ]; then
-	curl -fsSL https://apt.fury.io/wez/gpg.key
-fi
-sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg gpg.key
+GPG_DST="/etc/apt/keyrings/wezterm-fury.gpg"
+GPG_SRC="gpg.key"
 
-echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+if [ ! -e "$GPG_DST" ]; then
+	if [ ! -e "$GPG_SRC" ]; then
+		curl -fsSL https://apt.fury.io/wez/gpg.key -o "$GPG_SRC"
+	fi
+	sudo gpg --yes --dearmor -o "$GPG_DST" "$GPG_SRC"
+fi
+
+echo "deb [signed-by=${GPG_DST}] https://apt.fury.io/wez/ * *" | sudo tee /etc/apt/sources.list.d/wezterm.list
+
+sudo apt update
+sudo apt install wezterm
