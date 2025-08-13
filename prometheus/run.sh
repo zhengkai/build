@@ -11,6 +11,8 @@ sudo docker stop prometheus || :
 sudo docker rm prometheus || :
 sudo docker rmi prometheus || :
 
+# sudo docker network create monitoring || :
+
 ./pull.sh
 
 sudo docker run \

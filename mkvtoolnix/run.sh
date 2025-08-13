@@ -12,7 +12,7 @@ if [ "$ARCH" == 'x86_64' ]; then
 elif [ "$ARCH" == 'aarch64' ]; then
 	ARCH='arm64'
 else
-	>&2 echo unknown arch $ARCH
+	>&2 echo unknown arch "$ARCH"
 	exit
 fi
 
@@ -32,4 +32,6 @@ cat "$SOURCE"
 sudo cp "$SOURCE" /etc/apt/sources.list.d/mkvtoolnix.list
 
 sudo apt update
+
+set -x
 sudo apt install mkvtoolnix mkvtoolnix-gui

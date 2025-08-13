@@ -1,0 +1,2 @@
+deb [arch=amd64 signed-by=/usr/share/keyrings/mkvtoolnix.gpg] https://mkvtoolnix.download/ubuntu/ plucky main
+deb-src [arch=amd64 signed-by=/usr/share/keyrings/mkvtoolnix.gpg] https://mkvtoolnix.download/ubuntu/ plucky main
