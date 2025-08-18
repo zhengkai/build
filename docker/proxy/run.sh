@@ -35,7 +35,7 @@ if [ -e "$ROOT_JSON" ]; then
 	echo sudo systemctl daemon-reload
 	echo sudo systemctl restart docker
 else
-	sudo mkdir -p "$(dirname "$SERVICE_CONF")"
+	sudo mkdir -p "$(dirname "$ROOT_JSON")"
 	envsubst < ./config.json | sudo tee "$ROOT_JSON"
 	sudo systemctl daemon-reload
 	sudo systemctl restart docker
