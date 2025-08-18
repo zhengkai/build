@@ -48,5 +48,5 @@ echo
 envsubst < ./containerd.toml
 echo
 
-#sudo systemctl daemon-reload
-#sudo systemctl restart docker
+set -x
+docker run --rm alpine sh -c 'env | grep -i  _PROXY'
