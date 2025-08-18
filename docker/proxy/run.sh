@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PROXY="127.0.0.1:8118"
+export PROXY="http://127.0.0.1:8118"
 export NOPROXY="*.tuna.tsinghua.edu.cn,*.aliyuncs.com,10.0.0.0/8,127.0.0.0/8"
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
@@ -31,9 +31,14 @@ echo "$ROOT_JSON"
 echo
 if [ -e "$ROOT_JSON" ]; then
 	envsubst < ./config.json
+	echo
+	echo sudo systemctl daemon-reload
+	echo sudo systemctl restart docker
 else
 	sudo mkdir -p "$(dirname "$SERVICE_CONF")"
 	envsubst < ./config.json | sudo tee "$ROOT_JSON"
+	sudo systemctl daemon-reload
+	sudo systemctl restart docker
 fi
 echo
 
