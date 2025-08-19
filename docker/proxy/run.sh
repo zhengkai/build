@@ -1,6 +1,13 @@
 #!/bin/bash
 
-export PROXY="http://127.0.0.1:8118"
+# export PROXY="http://127.0.0.1:8118"
+export PROXY=""
+
+if [ -z "$PROXY" ]; then
+	echo 'set PROXY in script'
+	exit
+fi
+
 export NOPROXY="*.tuna.tsinghua.edu.cn,*.aliyuncs.com,10.0.0.0/8,127.0.0.0/8"
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
