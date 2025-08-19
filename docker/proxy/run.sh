@@ -49,4 +49,4 @@ envsubst < ./containerd.toml
 echo
 
 set -x
-docker run --rm alpine sh -c 'env | grep -i  _PROXY'
+sudo docker run --rm alpine sh -c 'env | grep -i  _PROXY'
