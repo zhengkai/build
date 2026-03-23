@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo docker pull quay.io/prometheus/node-exporter:latest
+
 sudo docker run -d \
   --name=node-exporter \
   --restart=always \

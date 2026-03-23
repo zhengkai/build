@@ -5,7 +5,7 @@ if [ ! -e /usr/bin/v2ray ]; then
 fi
 
 if ! sudo id -u v2ray &>/dev/null; then
-    sudo useradd -r -s /usr/sbin/nologin -d /var/lib/v2ray v2ray
+    sudo useradd -r -s /usr/sbin/nologin -d /nonexistent v2ray
 fi
 
 LIMIT_FILE="/etc/security/limits.d/v2ray.conf"
