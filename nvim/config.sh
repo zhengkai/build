@@ -2,6 +2,8 @@
 
 echo 'nvim config'
 
+npm install -g tree-sitter-cli
+
 GIT="https://github.com/zhengkai/nvim.git"
 LOCAL="${HOME}/.config/nvim"
 if [ -d "$LOCAL" ]; then
