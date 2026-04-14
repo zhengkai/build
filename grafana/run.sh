@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sudo apt-get install -y apt-transport-https
 sudo apt-get install -y software-properties-common wget

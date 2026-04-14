@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 21	13	* * * ~/build/nginx/ssl-ticket-key/run.sh >/dev/null 2>&1
 

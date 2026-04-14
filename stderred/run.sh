@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 FILE="/usr/local/lib/libstderred.so"
 if [ -f "$FILE" ]; then

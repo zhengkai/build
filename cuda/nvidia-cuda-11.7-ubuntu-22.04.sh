@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PIN="/etc/apt/preferences.d/cuda-repository-pin-600"
 if [ ! -e "$PIN" ]; then

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 HTTP_RPXOY="${HTTP_PROXY:-http://192.168.50.251:8118}"
 

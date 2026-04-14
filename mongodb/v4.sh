@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-ubuntu/
 

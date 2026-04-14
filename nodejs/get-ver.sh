@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 RELEASE_FILE="ver/releases.json"
 

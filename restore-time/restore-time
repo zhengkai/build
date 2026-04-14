@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 TS_FILE="/var/lib/last-timestamp.txt"
 TZ="Asia/Shanghai"

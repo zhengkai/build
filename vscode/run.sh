@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -z "$DISPLAY" ]; then
 	echo "This script must be run in a graphical environment."

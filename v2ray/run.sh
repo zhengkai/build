@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ ! -e /usr/bin/v2ray ]; then
 	sudo apt install v2ray

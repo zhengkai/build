@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 
 # ulimit 限制 http://serverfault.com/a/815837/183566
 

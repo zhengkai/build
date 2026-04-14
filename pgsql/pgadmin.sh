@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 curl -s https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add -
 

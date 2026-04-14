@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://docs.microsoft.com/zh-cn/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 

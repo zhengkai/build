@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 
 VER=$(curl "https://api.github.com/repos/logseq/logseq/releases/latest" | jq -r .tag_name)
 if ! [[ $VER =~ ^[0-9.]+$ ]]; then

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for TYPE in {local,server}; do
 	NAME="ss-$TYPE"

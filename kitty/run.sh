@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 sudo apt install -y libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev \
 	libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig-dev \

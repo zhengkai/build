@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # export PROXY="http://127.0.0.1:8118"
 export PROXY=""

@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 GO_SITE='https://dl.google.com/go/'
 #GO_SITE='https://mirrors.ustc.edu.cn/golang/'

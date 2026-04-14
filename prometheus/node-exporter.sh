@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sudo docker pull quay.io/prometheus/node-exporter:latest
 

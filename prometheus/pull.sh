@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 
 ARCH=$(arch)
 if [ "$ARCH" == 'x86_64' ]; then

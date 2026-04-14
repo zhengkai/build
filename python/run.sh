@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 
 VER=$($(dirname "$0")"/get-ver.sh")
 #VER="3.8.1"

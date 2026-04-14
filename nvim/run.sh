@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 LAZY="${HOME}/.local/share/nvim/lazy/lazy.nvim"
 if [ ! -d "$LAZY" ]; then

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sudo systemctl disable systemd-resolved
 sudo systemctl stop systemd-resolved

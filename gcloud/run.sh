@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 #
 # doc: https://cloud.google.com/sdk/docs/install?hl=zh-cn#deb
 

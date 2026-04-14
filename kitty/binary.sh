@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 
 ARCH=$(uname -m)
 if [ "$ARCH" == "aarch64" ]; then

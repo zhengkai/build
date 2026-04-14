@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo
 sudo sysctl net.ipv4.tcp_congestion_control

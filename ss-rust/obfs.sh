@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 SRC_DIR="/usr/local/src"
 SS_SRC_DIR="${SRC_DIR}/simple-obfs"

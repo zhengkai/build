@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 GPG_FILE="/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg"
 if [ ! -f "$GPG_FILE" ]; then

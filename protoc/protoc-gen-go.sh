@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VER=$(curl -s -H "Accept: application/vnd.github.v3+json" \
 	https://api.github.com/repos/protocolbuffers/protobuf-go/releases \

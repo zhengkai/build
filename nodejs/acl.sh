@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 BIN="$HOME/conf/bin/acl"
 if [ ! -x "$BIN" ]; then

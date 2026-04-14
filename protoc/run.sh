@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 VER=$(curl -s -H "Accept: application/vnd.github.v3+json" \
 	https://api.github.com/repos/protocolbuffers/protobuf/releases \
@@ -22,7 +23,8 @@ LOCAL_ZIP="/usr/local/src/$ZIP"
 
 set -x
 
-curl -s -L "https://github.com/protocolbuffers/protobuf/releases/download/${VER}/${ZIP}" -o "$LOCAL_ZIP"
+echo curl -s -L "https://github.com/protocolbuffers/protobuf/releases/download/${VER}/${ZIP}" -o "$LOCAL_ZIP"
+exit
 
 MIN_SIZE=1000000
 SIZE=$(wc -c <"$LOCAL_ZIP")

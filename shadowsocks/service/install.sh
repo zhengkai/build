@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 CONFIG_FILE='/etc/shadowsocks.json'
 if [ ! -s $CONFIG_FILE ]; then

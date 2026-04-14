@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VER="$1"
 if [ -z "$VER" ]; then

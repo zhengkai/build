@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ALLOW_HOST="Monk Enigma"
 

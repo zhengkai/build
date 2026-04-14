@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DIR_LIST=('git' 'go' 'nodejs' 'shadowsocks' 'vim' 'nvim')
 

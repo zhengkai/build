@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 NAME="gptweb"
 IMAGE="chenzhaoyu94/chatgpt-web"

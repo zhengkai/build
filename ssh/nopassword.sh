@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 尽可能优雅的修改配置 sshd_config，使之禁止明文密码
 

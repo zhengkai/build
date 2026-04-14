@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 /etc/rc.local >/dev/null 2>&1 || true
 

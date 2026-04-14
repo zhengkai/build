@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 uid=`id -u shadowsocks 2>/dev/null`
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 禁止自动升级
 echo "mongodb-org hold"          | sudo dpkg --set-selections

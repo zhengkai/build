@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PACKAGE=${1:-shadowsocks/shadowsocks-rust}
 

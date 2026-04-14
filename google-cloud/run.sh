@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/usr/bin/env bash
+set -ex
 
 sudo apt-get install apt-transport-https ca-certificates gnupg curl
 
