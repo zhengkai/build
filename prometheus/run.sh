@@ -18,6 +18,7 @@ sudo docker rmi prometheus || :
 
 sudo docker run \
 	-d --name prometheus \
+  	--network=monitoring \
     -p 0.0.0.0:9090:9090 \
     -v /etc/prometheus:/etc/prometheus \
 	-v /etc/hosts:/etc/hosts \
